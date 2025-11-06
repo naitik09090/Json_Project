@@ -126,18 +126,18 @@ const JsonTreeMap = () => {
 
     const handleBlur = () => {
       setIsEditing(false);
-      onChange(path, editValue); // ✅ FIXED: don't append label
+      onChange(path, editValue);
     };
 
     const handleKeyDown = (e) => {
       if (e.key === "Enter") {
-        setIsEditing(false);
-        onChange(path, editValue); // ✅ FIXED: don't append label
+        setIsEditing(true);
+        onChange(path, editValue);
       }
     };
 
     return (
-      <div className="json-leaf">
+      <div className="json-leaf mb-5">
         <strong>{label}:</strong>
         {isEditing ? (
           <input
@@ -175,7 +175,7 @@ const JsonTreeMap = () => {
   };
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid py-5">
       <div className="row">
         <div className="col-md-12 border p-3 json-viewer">
           {parsedData ? (
