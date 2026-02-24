@@ -3,6 +3,7 @@ import { MdFormatAlignLeft } from "react-icons/md";
 import { MdOutlineFormatListBulleted } from "react-icons/md";
 import { HiTrash } from "react-icons/hi2";
 import JSON5 from 'json5';
+import { Link, useLocation } from "react-router-dom";
 
 function Home() {
   const [jsonData, setJsonData] = useState("");
@@ -43,7 +44,7 @@ function Home() {
       setJsonData(formatted);
     } catch (error) {
       console.error("JSON Invalid", error);
-      alert(`Invalid JSON! Please check your syntax. Error: ${error.message}`);
+      alert(`Invalid JSON! Please check your syntax.Error: ${error.message} `);
     }
   };
 
@@ -54,41 +55,59 @@ function Home() {
       setJsonData(compact);
     } catch (error) {
       console.error("JSON Whitespace Remove Error:", error);
-      alert(`Invalid JSON! Please check your syntax. Error: ${error.message}`);
+      alert(`Invalid JSON! Please check your syntax.Error: ${error.message} `);
     }
   };
 
   const handleFormatClick2 = () => {
     try {
       setJsonData("");
+      localStorage.removeItem("jsonData");
     } catch (error) {
-      alert("Invalid JSON! Please check your input.", error);
+      alert("Something went wrong!", error);
     }
   };
 
+
+  const location = useLocation();
+  const isViewer = location.pathname === "/viewer";
+  const [activeBtn, setActiveBtn] = useState(null);
+
+  const btn = (name) => ({
+    background: activeBtn === name ? "#ffffff" : "transparent",
+    color: "#1e293b",
+    borderRadius: "6px",
+    border: activeBtn === name ? "1px solid #d1d5db" : "1px solid transparent",
+  });
+
   return (
-    <>
-      <div className="container-fluid">
-        <ul className="nav justify-content-start border p-2 flex-wrap gap-2">
+    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+      {/* Toolbar */}
+      <div className="container-fluid" style={{ flexShrink: 0 }}>
+        <ul className="nav justify-content-start border p-2 flex-wrap gap-2 toolbar-mobile-row">
           <li className="nav-item">
-            <a className="nav-link px-2 text-black" onClick={handleFormatClick}>
+            <Link to="/" className={`nav-link px-2 ${activeBtn === "format" ? "toolbar-btn-active" : ""}`} style={btn("format")} onClick={() => { setActiveBtn("format"); handleFormatClick(); }}>
               <MdFormatAlignLeft /> Format
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link px-2 text-black" onClick={handleFormatClick1}>
+            <Link to="/" className={`nav-link px-2 ${activeBtn === "whitespace" ? "toolbar-btn-active" : ""}`} style={btn("whitespace")} onClick={() => { setActiveBtn("whitespace"); handleFormatClick1(); }}>
               <MdOutlineFormatListBulleted /> Remove Whitespace
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link px-2 text-black" onClick={handleFormatClick2}>
+            <Link to="/" className={`nav-link px-2 ${activeBtn === "clear" ? "toolbar-btn-active" : ""}`} style={btn("clear")} onClick={() => { setActiveBtn("clear"); handleFormatClick2(); }}>
               <HiTrash /> Clear
-            </a>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/viewer" className={`nav-link px-2 ${isViewer ? "toolbar-btn-active" : ""}`} style={isViewer ? { background: "#ffffff", color: "#000", borderRadius: "6px", border: "1px solid #d1d5db" } : { color: "#1e293b" }}>Viewer</Link>
           </li>
         </ul>
       </div>
 
-      <div style={{ display: "flex", alignItems: "flex-start" }}>
+      {/* Editor row — grows to fill remaining height */}
+      <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
         <div
           id="lineNumbers"
           style={{
@@ -100,9 +119,10 @@ function Home() {
             fontSize: "16px",
             userSelect: "none",
             color: "#666",
-            height: "595px",
+            height: "100%",
             overflow: "hidden",
             minWidth: "50px",
+            flexShrink: 0,
           }}
         >
           {lineNumbers.map((n) => (
@@ -111,15 +131,18 @@ function Home() {
         </div>
 
         <textarea
-          className="form-control mb-3 p-2"
+          className="form-control p-2"
           style={{
-            minHeight: "600px",
+            height: "100%",
+            width: "100%",
             fontFamily: "Courier New, monospace",
             fontSize: "16px",
-            minWidth: "1850px",
             resize: "none",
             borderLeft: "none",
             overflow: "auto",
+            borderRadius: 0,
+            boxShadow: "none",
+            outline: "none",
           }}
           placeholder="Paste your JSON data here..."
           value={jsonData}
@@ -132,8 +155,7 @@ function Home() {
           }}
         ></textarea>
       </div>
-
-    </>
+    </div>
   );
 }
 

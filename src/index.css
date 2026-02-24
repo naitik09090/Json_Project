@@ -1,0 +1,229 @@
+/* ── Full height chain — required for flex layouts to fill viewport ── */
+html,
+body,
+#root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Hide scrollbars globally but keep scrolling working ── */
+
+/* Firefox */
+* {
+    scrollbar-width: none;
+}
+
+/* Chrome, Safari, Edge */
+*::-webkit-scrollbar {
+    display: none;
+}
+
+/* Ensure smooth scrolling everywhere */
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+/* ─────────────────────────────────────────
+   MOBILE ONLY — max-width 768px
+   Desktop styles are NOT touched here.
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+
+    /* ─── Fix Home.css global ul/li float interference on mobile ─── */
+    .navbar-mobile-row,
+    .toolbar-mobile-row {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow: clip !important;
+        /* clip vertically, allow x-scroll below */
+        overflow-x: auto !important;
+        background-color: transparent !important;
+    }
+
+    .navbar-mobile-row li,
+    .toolbar-mobile-row li {
+        float: none !important;
+        flex-shrink: 0 !important;
+    }
+
+    .navbar-mobile-row li a,
+    .toolbar-mobile-row li a {
+        display: inline-flex !important;
+        padding: unset !important;
+    }
+
+    /* ══════════════════════════════════════════════════
+     NAVBAR — Cosmic Dark with neon pill tabs
+  ══════════════════════════════════════════════════ */
+
+    .mobile-nav-container {
+        background: linear-gradient(160deg, #0a0f1e 0%, #0f1b3d 45%, #121f4a 100%) !important;
+        border: none !important;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.25) !important;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.55) !important;
+        padding: 0 !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+
+    /* Subtle dot-grid overlay */
+    .mobile-nav-container::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+            radial-gradient(circle, rgba(139, 92, 246, 0.07) 1px, transparent 1px),
+            radial-gradient(circle, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+        background-size: 18px 18px, 36px 36px;
+        background-position: 0 0, 9px 9px;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    /* Subtle top shimmer line */
+    .mobile-nav-container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #6366f1, #06b6d4, transparent);
+        z-index: 1;
+    }
+
+    .navbar-mobile-row {
+        background: transparent !important;
+        border: none !important;
+        padding: 10px 12px !important;
+        gap: 7px !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
+        z-index: 2;
+        align-items: center !important;
+    }
+
+    /* All nav tabs — ghost pills */
+    .navbar-mobile-row .nav-link {
+        color: rgba(255, 255, 255, 0.55) !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.10) !important;
+        border-radius: 24px !important;
+        padding: 6px 15px !important;
+        font-size: 0.78rem !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.03em !important;
+        white-space: nowrap !important;
+        backdrop-filter: blur(6px) !important;
+        transition: all 0.22s ease !important;
+        text-transform: none !important;
+    }
+
+    /* ★ Active nav tab — neon indigo-cyan glow pill */
+    .navbar-mobile-row .nav-link.nav-link-active {
+        color: #ffffff !important;
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 50%, #06b6d4 100%) !important;
+        border-color: rgba(99, 102, 241, 0.4) !important;
+        font-weight: 700 !important;
+        box-shadow:
+            0 0 0 1px rgba(99, 102, 241, 0.35),
+            0 0 16px rgba(99, 102, 241, 0.55),
+            0 0 32px rgba(6, 182, 212, 0.25) !important;
+        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35) !important;
+        letter-spacing: 0.04em !important;
+    }
+
+    /* ══════════════════════════════════════════════════
+     TOOLBAR — Frosted glass card, vibrant active
+  ══════════════════════════════════════════════════ */
+
+    .toolbar-mobile-row {
+        background: rgba(248, 250, 252, 0.96) !important;
+        border: none !important;
+        border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+        box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.8) inset,
+            0 4px 16px rgba(0, 0, 0, 0.08) !important;
+        padding: 8px 12px !important;
+        gap: 7px !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        align-items: center !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /* All toolbar buttons — chip style */
+    .toolbar-mobile-row .nav-link {
+        color: #4b5563 !important;
+        background: #ffffff !important;
+        border: 1px solid #e5e7eb !important;
+        border-radius: 12px !important;
+        padding: 7px 14px !important;
+        font-size: 0.79rem !important;
+        font-weight: 500 !important;
+        white-space: nowrap !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 5px !important;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07), 0 0 0 1px rgba(0, 0, 0, 0.03) !important;
+        transition: all 0.2s ease !important;
+        letter-spacing: 0.02em !important;
+    }
+
+    /* ★ Active toolbar button — purple gradient + glow */
+    .toolbar-mobile-row .nav-link.toolbar-btn-active {
+        color: #ffffff !important;
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 60%, #a855f7 100%) !important;
+        border-color: transparent !important;
+        box-shadow:
+            0 0 0 1px rgba(124, 58, 237, 0.3),
+            0 4px 18px rgba(79, 70, 229, 0.5),
+            0 8px 28px rgba(168, 85, 247, 0.2) !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.03em !important;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    /* ─── Static page helpers ─── */
+    .mobile-hero {
+        padding: 1.5rem 1rem 1rem !important;
+    }
+
+    .mobile-body {
+        padding: 1.25rem 1rem !important;
+    }
+
+    .mobile-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .mobile-form-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ─── JSON Viewer tree: scroll horizontally, no word-wrap ─── */
+    .json-viewer {
+        white-space: nowrap !important;
+        word-wrap: normal !important;
+        word-break: normal !important;
+        overflow-x: auto !important;
+        padding: 10px 8px !important;
+        font-size: 0.78rem !important;
+    }
+
+    .json-node {
+        width: auto !important;
+        min-width: max-content !important;
+        padding-left: 14px !important;
+    }
+
+    .json-leaf {
+        white-space: nowrap !important;
+        overflow: visible !important;
+    }
+}

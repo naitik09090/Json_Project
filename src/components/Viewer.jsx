@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { MdFormatAlignLeft } from "react-icons/md";
+import { MdOutlineFormatListBulleted } from "react-icons/md";
+import { HiTrash } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
-const JsonTreeMap = () => {
+const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2 }) => {
   const [parsedData, setParsedData] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -137,7 +141,7 @@ const JsonTreeMap = () => {
     };
 
     return (
-      <div className="json-leaf mb-5">
+      <div className="json-leaf">
         <strong>{label}:</strong>
         {isEditing ? (
           <input
@@ -174,36 +178,64 @@ const JsonTreeMap = () => {
     );
   };
 
+  const activeStyle = { background: "#ffffff", color: "#000", borderRadius: "6px" };
+  const inactiveStyle = { color: "#1e293b" };
+
   return (
-    <div className="container-fluid py-5">
-      <div className="row">
-        <div className="col-md-12 border p-3 json-viewer">
-          {parsedData ? (
-            <div className="json-tree">
-              <JsonNode
-                data={parsedData}
-                label="JSON"
-                search={searchQuery}
-                onChange={handleUpdateValue}
-              />
-            </div>
-          ) : (
-            <p>No JSON data available. Please input data from the Text page.</p>
-          )}
-        </div>
+    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+
+      {/* Toolbar */}
+      <div className="container-fluid" style={{ flexShrink: 0 }}>
+        <ul className="nav justify-content-start border p-2 flex-wrap gap-2 toolbar-mobile-row">
+          <li className="nav-item">
+            <Link to="/" className="nav-link px-2" style={inactiveStyle} onClick={handleFormatClick}>
+              <MdFormatAlignLeft /> Format
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/" className="nav-link px-2" style={inactiveStyle} onClick={handleFormatClick1}>
+              <MdOutlineFormatListBulleted /> Remove Whitespace
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/" className="nav-link px-2" style={inactiveStyle} onClick={handleFormatClick2}>
+              <HiTrash /> Clear
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/viewer" className="nav-link px-2 toolbar-btn-active" style={activeStyle}>Viewer</Link>
+          </li>
+        </ul>
       </div>
-      <div className="row mb-3">
-        <div className="col-md-12">
-          <input
-            className="form-control"
-            type="text"
-            placeholder="Search JSON data..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            style={{ maxWidth: "300px", marginBottom: "20px" }}
-          />
-        </div>
+
+      {/* Search bar */}
+      <div style={{ padding: "6px 12px", borderBottom: "1px solid #ccc", background: "#E5E5E5", flexShrink: 0 }}>
+        <input
+          className="form-control"
+          type="text"
+          placeholder="Search JSON data..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          style={{ maxWidth: "300px", height: "30px", fontSize: "13px" }}
+        />
       </div>
+
+      {/* JSON Tree — fills remaining screen */}
+      <div className="json-viewer" style={{ flex: 1, height: "auto" }}>
+        {parsedData ? (
+          <div className="json-tree">
+            <JsonNode
+              data={parsedData}
+              label="JSON"
+              search={searchQuery}
+              onChange={handleUpdateValue}
+            />
+          </div>
+        ) : (
+          <p>No JSON data available. Please input data from the Text page.</p>
+        )}
+      </div>
+
     </div>
   );
 };

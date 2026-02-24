@@ -22,14 +22,15 @@
   word-wrap: break-word;
   overflow-x: auto;
   max-width: 100%;
+  box-sizing: border-box;
   margin-bottom: 20px;
-  /* Optional: limit the width of JSON box */
 }
 
 .json-node {
   font-family: monospace;
   padding-left: 20px;
-  width: 80%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .json-label {
@@ -85,11 +86,10 @@
 }
 
 .json-tree {
-  height: 700px;
+  min-height: 100%;
 }
 
 .json-viewer {
-  max-height: 90vh;
   overflow-y: auto;
   scrollbar-width: none;
 }

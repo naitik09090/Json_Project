@@ -1,6 +1,15 @@
-body{
+body {
   background-color: #E5E5E5;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -24,9 +33,10 @@ ul li a {
 ul li a:hover {
   background-color: #F9F9F9;
 }
+
 /* Top Tabs */
 .nav-tabs {
-  background: #E5E5E5; /* light grey background */
+  background: #E5E5E5;
   border-bottom: 1px solid #ccc;
 }
 
@@ -68,6 +78,7 @@ ul li a:hover {
   text-decoration: underline;
   color: #000;
 }
-.nav-item a{
+
+.nav-item a {
   cursor: pointer;
 }
