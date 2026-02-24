@@ -98,7 +98,20 @@
   display: none;
 }
 
-/* Premium search bar — dark input placeholder */
-.json-search-input::placeholder {
+/* ── Search bar container — responsive width ── */
+.search-bar-container {
+  width: 20%;
+  /* desktop: compact left-aligned strip */
+}
+
+/* Mobile: stretch to full width */
+@media (max-width: 768px) {
+  .search-bar-container {
+    width: 100% !important;
+  }
+}
+
+/* Placeholder color for dark background */
+.search-bar-container input::placeholder {
   color: #000;
 }

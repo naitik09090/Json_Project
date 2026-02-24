@@ -210,16 +210,18 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
       </div>
 
       {/* ── Premium Search Bar ── */}
-      <div style={{
-        flexShrink: 0,
-        background: "#E5E5E5",
-        color: "#000",
-        borderBottom: "1px solid rgba(99,102,241,0.3)",
-        padding: "10px 16px",
-        position: "relative",
-        overflow: "hidden",
-        width: "20%",
-      }}>
+      <div
+        className="search-bar-container"
+        style={{
+          flexShrink: 0,
+          background: "#E5E5E5",
+          borderBottom: "1px solid rgba(99,102,241,0.3)",
+          padding: "10px 16px",
+          position: "relative",
+          overflow: "hidden",
+          boxSizing: "border-box",
+        }}
+      >
 
         {/* Dot-grid background texture */}
         <div style={{
