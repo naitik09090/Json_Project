@@ -97,3 +97,8 @@
 .json-viewer::-webkit-scrollbar {
   display: none;
 }
+
+/* Premium search bar — dark input placeholder */
+.json-search-input::placeholder {
+  color: #000;
+}

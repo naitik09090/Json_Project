@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MdFormatAlignLeft } from "react-icons/md";
-import { MdOutlineFormatListBulleted } from "react-icons/md";
+import { MdFormatAlignLeft, MdOutlineFormatListBulleted, MdSearch, MdClose } from "react-icons/md";
 import { HiTrash } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 
@@ -210,16 +209,106 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
         </ul>
       </div>
 
-      {/* Search bar */}
-      <div style={{ padding: "6px 12px", borderBottom: "1px solid #ccc", background: "#E5E5E5", flexShrink: 0 }}>
-        <input
-          className="form-control"
-          type="text"
-          placeholder="Search JSON data..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          style={{ maxWidth: "300px", height: "30px", fontSize: "13px" }}
-        />
+      {/* ── Premium Search Bar ── */}
+      <div style={{
+        flexShrink: 0,
+        background: "#E5E5E5",
+        color: "#000",
+        borderBottom: "1px solid rgba(99,102,241,0.3)",
+        padding: "10px 16px",
+        position: "relative",
+        overflow: "hidden",
+        width: "20%",
+      }}>
+
+        {/* Dot-grid background texture */}
+        <div style={{
+          position: "absolute", inset: 0, pointerEvents: "none",
+          backgroundImage: "radial-gradient(circle, rgba(99,102,241,0.07) 1px, transparent 1px)",
+          backgroundSize: "18px 18px",
+        }} />
+
+        {/* Top shimmer line */}
+        <div style={{
+          position: "absolute", top: 0, left: 0, right: 0, height: "1px",
+          background: "linear-gradient(90deg, transparent, #6366f1, #06b6d4, transparent)",
+        }} />
+
+        <div style={{ position: "relative", display: "flex", alignItems: "center", gap: "10px" }}>
+
+          {/* Search pill input */}
+          <div style={{
+            flex: 1,
+            display: "flex",
+            alignItems: "center",
+            background: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(99,102,241,0.35)",
+            borderRadius: "999px",
+            padding: "0 14px",
+            gap: "8px",
+            boxShadow: searchQuery
+              ? "0 0 0 2px rgba(99,102,241,0.4), 0 0 20px rgba(99,102,241,0.2)"
+              : "none",
+            transition: "box-shadow 0.25s ease",
+          }}>
+            <MdSearch style={{ color: "#6366f1", fontSize: "1.15rem", flexShrink: 0 }} />
+            <input
+              type="text"
+              placeholder="Search keys or values…"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              style={{
+                flex: 1,
+                background: "transparent",
+                border: "none",
+                outline: "none",
+                color: "#000",
+                fontSize: "0.84rem",
+                padding: "8px 0",
+                fontFamily: "'Inter', 'Segoe UI', system-ui, sans-serif",
+                letterSpacing: "0.02em",
+              }}
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                style={{
+                  background: "rgba(255,255,255,0.1)",
+                  border: "none",
+                  borderRadius: "50%",
+                  width: 20, height: 20,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  cursor: "pointer",
+                  padding: 0, flexShrink: 0,
+                  color: "#94a3b8",
+                  transition: "background 0.15s",
+                }}
+                aria-label="Clear search"
+              >
+                <MdClose style={{ fontSize: "0.85rem" }} />
+              </button>
+            )}
+          </div>
+
+          {/* Live result badge */}
+          {/* {searchQuery && (
+            <div style={{
+              background: "linear-gradient(135deg, #6366f1, #06b6d4)",
+              color: "#fff",
+              borderRadius: "999px",
+              padding: "4px 12px",
+              fontSize: "0.72rem",
+              fontWeight: 700,
+              letterSpacing: "0.04em",
+              whiteSpace: "nowrap",
+              boxShadow: "0 0 12px rgba(99,102,241,0.45)",
+              flexShrink: 0,
+            }}>
+              Searching…
+            </div>
+          )} */}
+
+        </div>
       </div>
 
       {/* JSON Tree — fills remaining screen */}
