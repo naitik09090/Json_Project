@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Background rounded square -->
+  <rect width="64" height="64" rx="12" fill="#1e3a8a"/>
+
+  <!-- Subtle inner glow -->
+  <rect width="64" height="64" rx="12" fill="url(#gloss)" opacity="0.15"/>
+
+  <defs>
+    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </linearGradient>
+    <linearGradient id="bracketGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Left curly brace { -->
+  <text
+    x="10"
+    y="46"
+    font-family="'Courier New', Courier, monospace"
+    font-size="42"
+    font-weight="900"
+    fill="url(#bracketGrad)"
+  >{</text>
+
+  <!-- Right curly brace } -->
+  <text
+    x="38"
+    y="46"
+    font-family="'Courier New', Courier, monospace"
+    font-size="42"
+    font-weight="900"
+    fill="url(#bracketGrad)"
+  >}</text>
+
+  <!-- Small magnifying glass dot in top-right: circle + handle -->
+  <circle cx="51" cy="14" r="5" fill="none" stroke="#facc15" stroke-width="2"/>
+  <line x1="55" y1="18" x2="58" y2="21" stroke="#facc15" stroke-width="2" stroke-linecap="round"/>
+</svg>

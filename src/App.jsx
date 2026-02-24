@@ -29,8 +29,10 @@ function App() {
     <>
       <div className="no-select" style={{ height: "100vh", overflow: "hidden", display: "flex", flexDirection: "column" }}>
         <Router>
-          <Navbar />
-          <div style={{ flex: 1, minHeight: 0, overflowY: "auto" }}>
+          <header role="banner">
+            <Navbar />
+          </header>
+          <main role="main" style={{ flex: 1, minHeight: 0, overflowY: "auto", display: "flex", flexDirection: "column" }}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/viewer" element={<Viewer />} />
@@ -39,7 +41,7 @@ function App() {
               <Route path="/terms" element={<Terms />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
-          </div>
+          </main>
         </Router>
       </div>
     </>
