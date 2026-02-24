@@ -1,50 +1,76 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import "./App.css";
 import "./css/Viewer.css";
 import "./css/Home.css";
-import Home from "./components/Home.jsx";
-import Viewer from "./components/Viewer.jsx";
 import Navbar from "./components/Navbar.jsx";
-import Privacy from "./components/Privacy.jsx";
-import About from "./components/About.jsx";
-import Terms from "./components/Terms.jsx";
-import Contact from "./components/Contact.jsx";
-// import Remove from "./components/Remove.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Format from "./components/Format.jsx";
+
+// ── Lazy-load each page so Vite splits them into separate chunks ──
+const Home = lazy(() => import("./components/Home.jsx"));
+const Viewer = lazy(() => import("./components/Viewer.jsx"));
+const About = lazy(() => import("./components/About.jsx"));
+const Privacy = lazy(() => import("./components/Privacy.jsx"));
+const Terms = lazy(() => import("./components/Terms.jsx"));
+const Contact = lazy(() => import("./components/Contact.jsx"));
+
+// ── Minimal fallback shown while a chunk loads ──
+const PageLoader = () => (
+  <div style={{
+    flex: 1,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "#f1f5f9",
+  }}>
+    <div style={{
+      width: 36,
+      height: 36,
+      border: "4px solid #e2e8f0",
+      borderTop: "4px solid #1e40af",
+      borderRadius: "50%",
+      animation: "spin 0.7s linear infinite",
+    }} />
+    <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+  </div>
+);
 
 function App() {
   useEffect(() => {
-    // Disable text selection for elements
-    // with class "no-select"
     const noSelectElements = document.querySelectorAll(".no-select");
-    noSelectElements.forEach((element) => {
-      element.style.webkitUserSelect = "none";
-      element.style.mozUserSelect = "none";
-      element.style.msUserSelect = "none";
-      element.style.userSelect = "none";
+    noSelectElements.forEach((el) => {
+      el.style.userSelect = "none";
+      el.style.webkitUserSelect = "none";
+      el.style.mozUserSelect = "none";
+      el.style.msUserSelect = "none";
     });
   }, []);
+
   return (
-    <>
-      <div className="no-select" style={{ height: "100vh", overflow: "hidden", display: "flex", flexDirection: "column" }}>
-        <Router>
-          <header role="banner">
-            <Navbar />
-          </header>
-          <main role="main" style={{ flex: 1, minHeight: 0, overflowY: "auto", display: "flex", flexDirection: "column" }}>
+    <div
+      className="no-select"
+      style={{ height: "100vh", overflow: "hidden", display: "flex", flexDirection: "column" }}
+    >
+      <Router>
+        <header role="banner">
+          <Navbar />
+        </header>
+        <main
+          role="main"
+          style={{ flex: 1, minHeight: 0, overflowY: "auto", display: "flex", flexDirection: "column" }}
+        >
+          <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/viewer" element={<Viewer />} />
-              <Route path="/privacy-policy" element={<Privacy />} />
               <Route path="/about" element={<About />} />
+              <Route path="/privacy-policy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
-          </main>
-        </Router>
-      </div>
-    </>
+          </Suspense>
+        </main>
+      </Router>
+    </div>
   );
 }
 

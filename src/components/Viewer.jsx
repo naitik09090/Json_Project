@@ -104,13 +104,15 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
             <ul className="json-children" style={{ listStyle: "none" }}>
               {keys.map((key) => (
                 <ul key={key}>
-                  <JsonNode
-                    data={data[key]}
-                    label={key}
-                    search={search}
-                    onChange={onChange}
-                    path={[...path, key]}
-                  />
+                  <li style={{ listStyle: "none" }}>
+                    <JsonNode
+                      data={data[key]}
+                      label={key}
+                      search={search}
+                      onChange={onChange}
+                      path={[...path, key]}
+                    />
+                  </li>
                 </ul>
               ))}
             </ul>
