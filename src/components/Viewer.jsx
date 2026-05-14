@@ -90,14 +90,23 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
           <div
             className="json-label"
             onClick={toggle}
-            style={{ cursor: "pointer" }}
+            style={{
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              padding: "2px 0"
+            }}
           >
-            <span className="toggle-icon">{collapsed ? "➕" : "➖"}</span>
-            <strong>{label}</strong>
-            <span className="type-icon">
+            <span className="toggle-icon" style={{ fontSize: "0.75rem", color: "#6366f1" }}>{collapsed ? "▶" : "▼"}</span>
+            <strong style={{ color: "#4f46e5", fontWeight: "600" }}>{label}</strong>
+            <span className="type-icon" style={{ fontSize: "0.75rem", color: "#94a3b8", fontStyle: "italic" }}>
               {isArray ? `[${data.length}]` : `{${keys.length}}`}
             </span>
           </div>
+
+
+
 
           {!collapsed && (
             <ul className="json-children" style={{ listStyle: "none" }}>
@@ -142,8 +151,8 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
     };
 
     return (
-      <div className="json-leaf">
-        <strong>{label}:</strong>
+      <div className="json-leaf" style={{ display: "flex", alignItems: "center", gap: "8px", padding: "2px 0" }}>
+        <strong style={{ color: "#4f46e5", fontWeight: "600" }}>{label}:</strong>
         {isEditing ? (
           <input
             type="text"
@@ -153,10 +162,13 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
             onBlur={handleBlur}
             onKeyDown={handleKeyDown}
             style={{
-              padding: "2px 4px",
+              padding: "2px 8px",
               borderRadius: "4px",
-              border: "1px solid #007bff",
-              marginLeft: "5px",
+              border: "1px solid #6366f1",
+              outline: "none",
+              background: "#ffffff",
+              color: "#1e293b",
+              fontSize: "0.85rem",
               width: "auto",
             }}
           />
@@ -164,18 +176,23 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
           <span
             onDoubleClick={handleDoubleClick}
             style={{
-              marginLeft: "10px",
-              backgroundColor: matchesSearch(label, data)
-                ? "transparent"
-                : "transparent",
+              color: typeof data === "string" ? "#16a34a" :
+                typeof data === "number" || typeof data === "boolean" ? "#ea580c" :
+                  data === null ? "#94a3b8" : "#1e293b",
+              fontWeight: "500",
               cursor: "pointer",
+              fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
+              fontSize: "0.85rem"
             }}
             title="Double-click to edit"
           >
-            {String(data)}
+            {typeof data === "string" ? `"${data}"` : String(data)}
           </span>
         )}
       </div>
+
+
+
     );
   };
 
@@ -186,8 +203,11 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
     <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
 
       {/* Toolbar */}
-      <div className="container-fluid" style={{ flexShrink: 0 }}>
-        <ul className="nav justify-content-start border p-2 flex-wrap gap-2 toolbar-mobile-row">
+      <div className="container-fluid" style={{ flexShrink: 0, background: "#ffffff" }}>
+        <ul className="nav justify-content-start border p-2 flex-wrap gap-2 toolbar-mobile-row" style={{ background: "#ffffff" }}>
+
+
+
           <li className="nav-item">
             <Link to="/" className="nav-link px-2" style={inactiveStyle} onClick={handleFormatClick}>
               <MdFormatAlignLeft /> Format
@@ -214,14 +234,16 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
         className="search-bar-container"
         style={{
           flexShrink: 0,
-          background: "#E5E5E5",
-          borderBottom: "1px solid rgba(99,102,241,0.3)",
+          background: "#ffffff",
+          borderBottom: "1px solid rgba(0,0,0,0.05)",
           padding: "10px 16px",
           position: "relative",
           overflow: "hidden",
           boxSizing: "border-box",
         }}
       >
+
+
 
         {/* Dot-grid background texture */}
         <div style={{
@@ -264,13 +286,15 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
                 background: "transparent",
                 border: "none",
                 outline: "none",
-                color: "#000",
+                color: "#1e293b",
                 fontSize: "0.84rem",
                 padding: "8px 0",
                 fontFamily: "'Inter', 'Segoe UI', system-ui, sans-serif",
                 letterSpacing: "0.02em",
               }}
             />
+
+
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
@@ -314,7 +338,10 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
       </div>
 
       {/* JSON Tree — fills remaining screen */}
-      <div className="json-viewer" style={{ flex: 1, height: "auto" }}>
+      <div className="json-viewer" style={{ flex: 1, height: "auto", background: "#ffffff", padding: "20px" }}>
+
+
+
         {parsedData ? (
           <div className="json-tree">
             <JsonNode

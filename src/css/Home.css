@@ -1,5 +1,6 @@
 body {
-  background-color: #E5E5E5;
+  background-color: #ffffff;
+
   overflow-x: hidden;
   margin: 0;
   padding: 0;
@@ -15,7 +16,8 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #E5E5E5;
+  background-color: #ffffff;
+
 }
 
 ul li {
@@ -36,7 +38,8 @@ ul li a:hover {
 
 /* Top Tabs */
 .nav-tabs {
-  background: #E5E5E5;
+  background: #ffffff;
+
   border-bottom: 1px solid #ccc;
 }
 
@@ -62,7 +65,8 @@ ul li a:hover {
 
 /* Bottom Menu */
 .nav-toolbar {
-  background: #f9f9f9;
+  background: #ffffff;
+
   border: 1px solid #ccc;
   border-top: none;
   padding: 4px 8px;

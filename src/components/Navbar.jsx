@@ -19,7 +19,9 @@ const Navbar = () => {
   const links = [
     { label: "Text", to: "/" },
     { label: "About", to: "/about" },
+    { label: "Blog", to: "/blog" },
     { label: "PrivacyPolicy", to: "/privacy-policy" },
+
     { label: "Terms", to: "/terms" },
     { label: "Contact", to: "/contact" },
   ];

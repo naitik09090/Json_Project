@@ -12,6 +12,9 @@ const About = lazy(() => import("./components/About.jsx"));
 const Privacy = lazy(() => import("./components/Privacy.jsx"));
 const Terms = lazy(() => import("./components/Terms.jsx"));
 const Contact = lazy(() => import("./components/Contact.jsx"));
+const Blog = lazy(() => import("./components/Blog.jsx"));
+const BlogDetails = lazy(() => import("./components/BlogDetails.jsx"));
+
 
 // ── Minimal fallback shown while a chunk loads ──
 const PageLoader = () => (
@@ -55,9 +58,11 @@ function App() {
           <Navbar />
         </header>
         <main
+          id="main-content"
           role="main"
           style={{ flex: 1, minHeight: 0, overflowY: "auto", display: "flex", flexDirection: "column" }}
         >
+
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -66,6 +71,9 @@ function App() {
               <Route path="/privacy-policy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:id" element={<BlogDetails />} />
+
             </Routes>
           </Suspense>
         </main>
