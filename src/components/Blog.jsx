@@ -45,7 +45,7 @@ const Blog = () => {
       </header>
 
       <div className="blog-grid-wrapper">
-        
+
         {/* Category Filter Pills */}
         <div className="blog-category-filters">
           {categories.map((cat) => (
@@ -96,7 +96,7 @@ const Blog = () => {
         {/* Blog Grid listing */}
         <div className="listing-section" style={{ marginTop: showFeatured ? "50px" : "10px" }}>
           {showFeatured && <h2 className="section-subtitle">Latest Articles</h2>}
-          
+
           {displayGridPosts.length > 0 ? (
             <div className="blog-grid">
               {displayGridPosts.map((post) => (
@@ -135,19 +135,6 @@ const Blog = () => {
             </div>
           )}
         </div>
-
-        {/* Newsletter Signup Banner */}
-        <div className="newsletter-box">
-          <div className="newsletter-content">
-            <h3>Stay Ahead of the Curve</h3>
-            <p>Get developer-focused JSON tips, API tutorials, and tools delivered straight to your inbox.</p>
-          </div>
-          <form className="newsletter-form" onSubmit={(e) => { e.preventDefault(); alert("Thanks for subscribing!"); }}>
-            <input type="email" placeholder="Enter your email" required className="newsletter-input" />
-            <button type="submit" className="newsletter-submit">Subscribe →</button>
-          </form>
-        </div>
-
       </div>
     </div>
   );

@@ -189,16 +189,19 @@ function Home() {
 
 
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      flex: 1,
-      minHeight: 0,
-      padding: "16px 20px",
-      gap: "12px",
-      backgroundColor: "#f8fafc",
-      boxSizing: "border-box"
-    }}>
+    <div
+      className="app-page-container"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        flex: 1,
+        minHeight: 0,
+        padding: "16px 20px",
+        gap: "12px",
+        backgroundColor: "#f8fafc",
+        boxSizing: "border-box"
+      }}
+    >
       {/* Toolbar */}
       <div
         style={{
@@ -253,6 +256,7 @@ function Home() {
 
       {/* Editor row — grows to fill remaining height */}
       <div
+        className="editor-container"
         style={{
           display: "flex",
           flex: 1,

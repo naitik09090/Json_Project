@@ -37,7 +37,23 @@ html {
    MOBILE ONLY — max-width 768px
    Desktop styles are NOT touched here.
 ───────────────────────────────────────── */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+
+    #main-content {
+        overflow-y: auto !important;
+    }
+
+    .editor-container {
+        min-height: 400px !important;
+        height: 400px !important;
+        flex: none !important;
+    }
+
+    .app-page-container {
+        flex: none !important;
+        height: auto !important;
+        min-height: auto !important;
+    }
 
     /* ─── Fix Home.css global ul/li float interference on mobile ─── */
     .navbar-mobile-row,
@@ -254,6 +270,9 @@ html {
         overflow-x: auto !important;
         padding: 10px 8px !important;
         font-size: 0.78rem !important;
+        min-height: 400px !important;
+        height: 400px !important;
+        flex: none !important;
     }
 
     .json-node {
@@ -271,22 +290,155 @@ html {
 /* ─────────────────────────────────────────
    AD RESPONSIVENESS — Mocking Bootstrap
 ───────────────────────────────────────── */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .d-none {
         display: none !important;
     }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
     .d-md-flex {
         display: flex !important;
     }
 }
 
 /* ─────────────────────────────────────────
-   DESKTOP NAVBAR — min-width 769px
+   TABLET — 768px to 1024px
+   Fills the gap between mobile and desktop
 ───────────────────────────────────────── */
-@media (min-width: 769px) {
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    /* ── Navbar ── */
+    .header-navbar {
+        padding: 10px 16px !important;
+        gap: 8px !important;
+    }
+
+    .header-logo {
+        height: 26px !important;
+    }
+
+    .header-nav-links {
+        gap: 2px !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+    }
+
+    .header-nav-links::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .header-nav-item {
+        font-size: 12px !important;
+        padding: 6px 10px !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* ── Toolbar ── */
+    .toolbar-mobile-row .nav-link {
+        font-size: 12px !important;
+        padding: 6px 10px !important;
+        white-space: nowrap !important;
+    }
+
+    /* ── Viewer / Home editor wrapper ── */
+    .json-viewer {
+        font-size: 0.82rem !important;
+        padding: 16px !important;
+    }
+
+    /* ── Static pages ── */
+    .static-hero {
+        padding: 48px 24px !important;
+    }
+
+    .static-hero h1 {
+        font-size: 2.6rem !important;
+    }
+
+    .static-hero p {
+        font-size: 1.1rem !important;
+    }
+
+    .static-body {
+        padding: 40px 24px !important;
+    }
+
+    .static-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* ── Blog ── */
+    .blog-grid-wrapper {
+        padding: 30px 20px !important;
+    }
+
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+
+    .featured-blog-card {
+        grid-template-columns: 1fr !important;
+    }
+
+    .featured-image-wrapper {
+        min-height: 220px !important;
+    }
+
+    .featured-blog-content {
+        padding: 28px !important;
+    }
+
+    .featured-blog-title {
+        font-size: 1.6rem !important;
+    }
+
+    .blog-detail-layout {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+    }
+
+    .blog-toc-sidebar {
+        position: static !important;
+    }
+
+    .blog-detail-title {
+        font-size: 2rem !important;
+    }
+
+    /* ── Newsletter ── */
+    .newsletter-box {
+        flex-direction: column !important;
+        padding: 36px 28px !important;
+        gap: 24px !important;
+        text-align: center !important;
+    }
+
+    .newsletter-form {
+        max-width: 100% !important;
+    }
+
+    /* ── Contact layout ── */
+    .contact-grid-layout {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+    }
+
+    /* ── About / Privacy / Terms ── */
+    .static-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+}
+
+/* ─────────────────────────────────────────
+   DESKTOP NAVBAR — min-width 768px
+───────────────────────────────────────── */
+@media (min-width: 768px) {
     .header-navbar {
         display: flex;
         justify-content: space-between;

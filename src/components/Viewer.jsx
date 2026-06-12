@@ -230,16 +230,19 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
   const inactiveStyle = { background: "transparent", color: "#1e293b", borderRadius: "6px", border: "1px solid transparent", fontWeight: 400, transition: "all 0.15s ease", boxShadow: "none" };
 
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      flex: 1,
-      minHeight: 0,
-      padding: "16px 20px",
-      gap: "12px",
-      backgroundColor: "#f8fafc",
-      boxSizing: "border-box"
-    }}>
+    <div
+      className="app-page-container"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        flex: 1,
+        minHeight: 0,
+        padding: "16px 20px",
+        gap: "12px",
+        backgroundColor: "#f8fafc",
+        boxSizing: "border-box"
+      }}
+    >
 
       {/* Toolbar */}
       <div
