@@ -6,6 +6,9 @@
   background: #ffffff;
   color: #1e293b;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 
@@ -48,9 +51,11 @@
 
 /* ── Main Content Body ── */
 .static-body {
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
   padding: 60px 20px;
+  box-sizing: border-box;
 }
 
 .static-section {
@@ -292,22 +297,66 @@
 }
 
 /* ── Mobile ── */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  .static-hero {
+    padding: 40px 16px;
+    margin-bottom: 24px;
+  }
+
   .static-hero h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    margin-bottom: 12px;
   }
 
   .static-hero p {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .static-body {
+    padding: 24px 16px;
+  }
+
+  .static-section {
+    margin-bottom: 36px;
+  }
+
+  .static-section-title {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+  }
+
+  .static-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .static-list li {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
   }
 
   .static-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .static-card {
+    padding: 16px;
+    border-radius: 12px;
   }
 
   .static-highlight {
-    font-size: 1.1rem;
-    padding: 24px;
+    font-size: 1rem;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .static-section table {
+    min-width: 600px;
   }
 }
 

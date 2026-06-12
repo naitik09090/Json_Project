@@ -118,7 +118,7 @@ export default function Privacy() {
             The following table provides a transparent summary of all data types our tool interacts with 
             and how each is handled:
           </p>
-          <div style={{ overflowX: "auto", border: "1px solid #e2e8f0", borderRadius: "12px", marginTop: "24px" }}>
+          <div style={{ overflowX: "auto", maxWidth: "100%", border: "1px solid #e2e8f0", borderRadius: "12px", marginTop: "24px" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.9rem" }}>
               <thead>
                 <tr style={{ background: "#f8fafc" }}>
