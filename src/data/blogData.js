@@ -2,7 +2,7 @@ export const blogData = [
   {
     id: "understanding-json-syntax-and-structure",
     title: "Understanding JSON Syntax: The Ultimate Guide for Developers",
-    date: "March 20, 2024",
+    date: "March 20, 2026",
     author: "JSON Expert",
     category: "Tutorials",
     excerpt: "Learn the fundamentals of JSON syntax, including objects, arrays, and data types, to build better integrations and APIs.",
@@ -34,14 +34,11 @@ export const blogData = [
       keywords: ["JSON Syntax", "JSON Structure", "Web Development", "API Data Exchange"]
     },
     image: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&w=800&q=80"
-
-
-
   },
   {
     id: "top-5-online-json-formatters-2024",
     title: "Top 5 Online JSON Formatters for 2024",
-    date: "March 21, 2024",
+    date: "March 21, 2026",
     author: "Tech Reviewer",
     category: "Tools",
     excerpt: "Efficiency is key in development. We've reviewed the best JSON formatters and viewers to help you debug your data faster.",
@@ -49,7 +46,7 @@ export const blogData = [
       <h2>The Importance of JSON Visualizers</h2>
       <p>Raw JSON can be a nightmare to read, especially when it's nested deep. Formatters help by adding whitespace, indentation, and sometimes even syntax highlighting and tree views.</p>
       
-      <h3>1. JSONVIEWER.io</h3>
+      <h3>1. JSONVIEW.ME</h3>
       <p>Our very own viewer offers lightning-fast performance and a clean interface. It supports collapsible nodes and search functionality, making it perfect for massive datasets.</p>
       
       <h3>2. JSONLint</h3>
@@ -70,14 +67,11 @@ export const blogData = [
       keywords: ["JSON Formatter", "JSON Viewer", "Developer Tools", "Best JSON Online"]
     },
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
-
-
-
   },
   {
     id: "json-vs-xml-why-json-wins",
     title: "JSON vs XML: Why JSON Became the Standard",
-    date: "March 22, 2024",
+    date: "March 22, 2026",
     author: "Data Architect",
     category: "Analysis",
     excerpt: "Compare JSON and XML in terms of performance, readability, and ease of use in modern web applications.",
@@ -100,14 +94,11 @@ export const blogData = [
       keywords: ["JSON vs XML", "Data Formats", "Web API Design", "RESTful Services"]
     },
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
-
-
-
   },
   {
     id: "optimizing-large-json-payloads",
     title: "How to Optimize Large JSON Payloads for Better Performance",
-    date: "March 23, 2024",
+    date: "March 23, 2026",
     author: "Performance Lead",
     category: "Performance",
     excerpt: "Working with massive datasets? Learn techniques like compression, field stripping, and streaming to handle large JSON efficiently.",
@@ -133,14 +124,11 @@ export const blogData = [
       keywords: ["JSON Optimization", "API Performance", "Big Data JSON", "Gzip Compression"]
     },
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
-
-
-
   },
   {
     id: "json-security-best-practices",
     title: "JSON Security Best Practices: Protecting Your APIs",
-    date: "March 24, 2024",
+    date: "March 24, 2026",
     author: "Security Analyst",
     category: "Security",
     excerpt: "Is your JSON data safe? Discover common vulnerabilities like JSON injection and how to prevent them in your applications.",
@@ -166,14 +154,11 @@ export const blogData = [
       keywords: ["JSON Security", "API Vulnerabilities", "Web Security", "Data Sanitization"]
     },
     image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80"
-
-
-
   },
   {
     id: "future-of-data-serialization",
     title: "The Future of Data Serialization: Beyond JSON",
-    date: "March 25, 2024",
+    date: "March 25, 2026",
     author: "Futurist",
     category: "Tech Trends",
     excerpt: "While JSON is king today, new formats like BSON, MessagePack, and Protocol Buffers are rising. What's next for data exchange?",
@@ -188,7 +173,7 @@ export const blogData = [
       <p>If you are building microservices that communicate frequently with each other (Internal APIs), the overhead of JSON might be too much. This is where gRPC and Protobuf excel.</p>
 
       <h3>Summary</h3>
-      <p>JSON will remains the king of the public web due to its simplicity and browser compatibility, but for specialized, high-performance needs, the future is binary.</p>
+      <p>JSON will remain the king of the public web due to its simplicity and browser compatibility, but for specialized, high-performance needs, the future is binary.</p>
     `,
     seo: {
       title: "Future of JSON | Protobuf vs MessagePack vs JSON",
@@ -196,8 +181,5 @@ export const blogData = [
       keywords: ["Data Serialization", "Protobuf", "Binary JSON", "Future of Tech"]
     },
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80"
-
-
-
   }
 ];

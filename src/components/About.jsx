@@ -12,7 +12,7 @@ const features = [
 
 export default function About() {
   useEffect(() => {
-    document.title = "About Us - JSONVIEWER.io | Fast & Private JSON Tool";
+    document.title = "About Us - JSONVIEW.ME | Fast & Private JSON Tool";
     const mainContent = document.getElementById("main-content");
     if (mainContent) mainContent.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -20,15 +20,15 @@ export default function About() {
   return (
     <div className="static-page">
       <header className="static-hero">
-        <h1>About JSONVIEWER</h1>
+        <h1>About JSONVIEW.ME</h1>
         <p>A high-performance, privacy-first tool designed to help developers master their data structures instantly.</p>
       </header>
 
       <div className="static-body">
         <section className="static-section">
-          <h2 className="static-section-title">What is JSON Viewer?</h2>
+          <h2 className="static-section-title">What is JSONVIEW.ME?</h2>
           <p className="static-text">
-            <strong>JSON Viewer</strong> is a lightweight, browser-based tool designed for modern developers and architects. 
+            <strong>JSONVIEW.ME</strong> is a lightweight, browser-based tool designed for modern developers and architects. 
             We provide a fast path from raw, unreadable strings to structured, human-readable clarity.
           </p>
           <p className="static-text">
@@ -57,7 +57,7 @@ export default function About() {
           </blockquote>
           <p className="static-text">
             We believe that great tools should be invisible—fast, reliable, and always there when you need them. 
-            JSONVIEWER is our contribution to the developer community, helping thousands of people debug and explore their data every day.
+            JSONVIEW.ME is our contribution to the developer community, helping thousands of people debug and explore their data every day.
           </p>
         </section>
 
@@ -73,7 +73,7 @@ export default function About() {
       </div>
 
       <footer className="static-footer">
-        © {new Date().getFullYear()} JSONVIEWER.io — All Rights Reserved.
+        © {new Date().getFullYear()} JSONVIEW.ME — All Rights Reserved.
       </footer>
     </div>
   );

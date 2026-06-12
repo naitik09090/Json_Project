@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../css/StaticPages.css";
 
 const infoCards = [
-  { icon: "📧", title: "Email Address", desc: "support@jsonviewer.io" },
+  { icon: "📧", title: "Email Address", desc: "support@jsonview.me" },
   { icon: "⏰", title: "Response Time", desc: "1–2 business days" },
   { icon: "🔒", title: "Data Privacy", desc: "Your data stays on your machine" },
   { icon: "🆕", title: "Service", desc: "Always free, no signup required" },
@@ -15,7 +15,7 @@ export default function Contact() {
   const [sent, setSent] = useState(false);
 
   useEffect(() => {
-    document.title = "Contact Us - JSONVIEWER.io | Support & Feedback";
+    document.title = "Contact Us - JSONVIEW.ME | Support & Feedback";
     const mainContent = document.getElementById("main-content");
     if (mainContent) mainContent.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -83,7 +83,7 @@ export default function Contact() {
       </div>
 
       <footer className="static-footer">
-        © {new Date().getFullYear()} JSONVIEWER.io — All Rights Reserved.
+        © {new Date().getFullYear()} JSONVIEW.ME — All Rights Reserved.
       </footer>
     </div>
   );

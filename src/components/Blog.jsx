@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+// import AdComponent from "./AdComponent.jsx";
 import { blogData } from "../data/blogData";
 import "../css/Blog.css";
+import "../css/StaticPages.css";
 
 const Blog = () => {
   useEffect(() => {
-    document.title = "Blog - JSONVIEWER.io | Modern JSON Guide & Tools";
+    document.title = "Blog - JSONVIEW.ME | Modern JSON Guide & Tools";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute("content", "Explore our technical blog for in-depth tutorials on JSON, data structures, and the latest developer tools. Stay updated with modern data serialization patterns.");
@@ -19,12 +21,17 @@ const Blog = () => {
 
   return (
     <div className="blog-container">
-      <div className="blog-grid-wrapper">
-        <section className="blog-hero">
-          <h1>Mastering Data Architecture</h1>
-          <p>Expert guides on JSON formatting, API performance, and modern developer workflows.</p>
+      <header className="static-hero">
+        <h1>Mastering Data Architecture</h1>
+        <p>Expert guides on JSON formatting, API performance, and modern developer workflows.</p>
+      </header>
 
-        </section>
+      <div className="blog-grid-wrapper">
+
+        {/* Blog Listing Ad */}
+        {/* <div style={{ margin: "3rem 0", background: "transparent" }}>
+          <AdComponent adSlot="BLOG_LISTING_TOP_SLOT_ID" />
+        </div> */}
 
 
         <div className="blog-grid">
@@ -56,7 +63,7 @@ const Blog = () => {
         </div>
       </div>
       <footer className="static-footer">
-        © {new Date().getFullYear()} JSONVIEWER.io — All Rights Reserved.
+        © {new Date().getFullYear()} JSONVIEW.ME — All Rights Reserved.
       </footer>
     </div>
 

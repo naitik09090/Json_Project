@@ -4,7 +4,7 @@ import "../css/StaticPages.css";
 const sections = [
   {
     icon: "🚫", title: "Data Zero Collection",
-    content: "We do not trasmit, store, or see any JSON data you process. All operations happen 100% locally in your browser memory.",
+    content: "We do not transmit, store, or see any JSON data you process. All operations happen 100% locally in your browser memory.",
   },
   {
     icon: "💾", title: "Secure Local Storage",
@@ -16,7 +16,7 @@ const sections = [
   },
   {
     icon: "🍪", title: "Cookie Policy",
-    content: "JSONVIEWER does not set first-party cookies. Any analytics cookies are handled by third-party providers with anonymization enabled.",
+    content: "JSONVIEW.ME does not set first-party cookies. Any analytics cookies are handled by third-party providers with anonymization enabled.",
   },
   {
     icon: "🔗", title: "External Links",
@@ -30,7 +30,7 @@ const sections = [
 
 export default function Privacy() {
   useEffect(() => {
-    document.title = "Privacy Policy - JSONVIEWER.io | Secure & Anonymous";
+    document.title = "Privacy Policy - JSONVIEW.ME | Secure & Anonymous";
     const mainContent = document.getElementById("main-content");
     if (mainContent) mainContent.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -39,7 +39,7 @@ export default function Privacy() {
     <div className="static-page">
       <header className="static-hero">
         <h1>Privacy Policy</h1>
-        <p>Your data is your business. We've built JSONVIEWER to be a completely blind, local-only processing environment.</p>
+        <p>Your data is your business. We've built JSONVIEW.ME to be a completely blind, local-only processing environment.</p>
       </header>
 
       <div className="static-body">
@@ -76,15 +76,15 @@ export default function Privacy() {
           <h2 className="static-section-title">Contact</h2>
           <p className="static-text">
             For any privacy-related inquiries or technical questions regarding data handling, please reach out to us at{" "}
-            <a href="mailto:support@jsonviewer.io" style={{ color: "#6366f1", fontWeight: 700, textDecoration: "none" }}>
-              support@jsonviewer.io
+            <a href="mailto:support@jsonview.me" style={{ color: "#6366f1", fontWeight: 700, textDecoration: "none" }}>
+              support@jsonview.me
             </a>
           </p>
         </section>
       </div>
 
       <footer className="static-footer">
-        © {new Date().getFullYear()} JSONVIEWER.io — All Rights Reserved.
+        © {new Date().getFullYear()} JSONVIEW.ME — All Rights Reserved.
       </footer>
     </div>
   );

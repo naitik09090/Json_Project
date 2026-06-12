@@ -7,16 +7,23 @@ body,
     padding: 0;
 }
 
-/* ── Hide scrollbars globally but keep scrolling working ── */
-
-/* Firefox */
-* {
-    scrollbar-width: none;
+/* ── Ensure scrollbars are visible in the editor ── */
+.form-control::-webkit-scrollbar,
+.json-viewer::-webkit-scrollbar {
+    display: block !important;
+    width: 8px;
+    height: 8px;
 }
 
-/* Chrome, Safari, Edge */
-*::-webkit-scrollbar {
-    display: none;
+.form-control::-webkit-scrollbar-thumb,
+.json-viewer::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+.form-control::-webkit-scrollbar-thumb:hover,
+.json-viewer::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
 }
 
 /* Ensure smooth scrolling everywhere */
@@ -59,13 +66,28 @@ html {
   ══════════════════════════════════════════════════ */
 
     .mobile-nav-container {
-        background: linear-gradient(160deg, #0a0f1e 0%, #0f1b3d 45%, #121f4a 100%) !important;
+        background: linear-gradient(135deg, #eaebec 0%) !important;
         border: none !important;
         border-bottom: 1px solid rgba(99, 102, 241, 0.25) !important;
         box-shadow: 0 4px 24px rgba(0, 0, 0, 0.55) !important;
-        padding: 0 !important;
+        padding: 0 0 8px 0 !important;
+        /* Added space after the tabs */
         position: relative !important;
         overflow: hidden !important;
+    }
+
+    /* Hide horizontal scrollbar for mobile nav and toolbar rows */
+    .navbar-mobile-row::-webkit-scrollbar,
+    .toolbar-mobile-row::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .navbar-mobile-row,
+    .toolbar-mobile-row {
+        -ms-overflow-style: none !important;
+        /* IE and Edge */
+        scrollbar-width: none !important;
+        /* Firefox */
     }
 
     /* Subtle dot-grid overlay */
@@ -90,7 +112,7 @@ html {
         left: 0;
         right: 0;
         height: 1px;
-        background: linear-gradient(90deg, transparent, #6366f1, #06b6d4, transparent);
+        background: linear-gradient(135deg, #eaebec 0%, #4f46e5 50%, #06b6d4 100%) !important;
         z-index: 1;
     }
 
@@ -109,13 +131,13 @@ html {
 
     /* All nav tabs — ghost pills */
     .navbar-mobile-row .nav-link {
-        color: rgba(255, 255, 255, 0.55) !important;
+        color: #000 !important;
         background: rgba(255, 255, 255, 0.05) !important;
         border: 1px solid rgba(255, 255, 255, 0.10) !important;
         border-radius: 24px !important;
         padding: 6px 15px !important;
         font-size: 0.78rem !important;
-        font-weight: 500 !important;
+        font-weight: 700 !important;
         letter-spacing: 0.03em !important;
         white-space: nowrap !important;
         backdrop-filter: blur(6px) !important;
@@ -126,7 +148,7 @@ html {
     /* ★ Active nav tab — neon indigo-cyan glow pill */
     .navbar-mobile-row .nav-link.nav-link-active {
         color: #ffffff !important;
-        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 50%, #06b6d4 100%) !important;
+        background: linear-gradient(135deg, #eaebec 0%, #4f46e5 50%, #06b6d4 100%) !important;
         border-color: rgba(99, 102, 241, 0.4) !important;
         font-weight: 700 !important;
         box-shadow:
@@ -178,7 +200,7 @@ html {
     /* ★ Active toolbar button — purple gradient + glow */
     .toolbar-mobile-row .nav-link.toolbar-btn-active {
         color: #ffffff !important;
-        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 60%, #a855f7 100%) !important;
+        background: linear-gradient(135deg, #eaebec 0%, #4f46e5 50%, #06b6d4 100%) !important;
         border-color: transparent !important;
         box-shadow:
             0 0 0 1px rgba(124, 58, 237, 0.3),
@@ -225,5 +247,20 @@ html {
     .json-leaf {
         white-space: nowrap !important;
         overflow: visible !important;
+    }
+}
+
+/* ─────────────────────────────────────────
+   AD RESPONSIVENESS — Mocking Bootstrap
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+    .d-none {
+        display: none !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .d-md-flex {
+        display: flex !important;
     }
 }

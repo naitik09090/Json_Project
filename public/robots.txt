@@ -1,8 +1,8 @@
 # robots.txt — JSON Viewer
-# https://json-viewer.vercel.app/
+# https://jsonview.me/
 
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://json-viewer.vercel.app/sitemap.xml
+Sitemap: https://jsonview.me/sitemap.xml

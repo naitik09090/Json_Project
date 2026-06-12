@@ -18,19 +18,42 @@ const Navbar = () => {
 
   const links = [
     { label: "Text", to: "/" },
-    { label: "About", to: "/about" },
     { label: "Blog", to: "/blog" },
-    { label: "PrivacyPolicy", to: "/privacy-policy" },
+    { label: "About", to: "/about" },
+    { label: "Privacy Policy", to: "/privacy-policy" },
 
     { label: "Terms", to: "/terms" },
     { label: "Contact", to: "/contact" },
   ];
 
   return (
-    <div className="container-fluid mobile-nav-container" style={{ padding: 0 }}>
-      <ul className="nav justify-content-start border p-2 navbar-mobile-row" style={{ gap: "4px" }}>
+    <div
+      className="mobile-nav-container navbar-mobile-row-container"
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "0 24px",
+        backgroundColor: "#f8fafc",
+        borderBottom: "1px solid #e2e8f0"
+      }}
+    >
+      <Link className="mobile-logo-link" to="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }} title="JSONVIEW.ME Home">
+        <img src="/logo.svg" alt="JSONVIEW.ME Logo" height="36" style={{ objectFit: 'contain' }} />
+      </Link>
+      <ul
+        className="nav navbar-mobile-row"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          margin: 0,
+          padding: "8px 0",
+          listStyle: "none"
+        }}
+      >
         {links.map((link) => (
-          <li className="nav-item" key={link.to}>
+          <li key={link.to} style={{ margin: 0 }}>
             <Link
               to={link.to}
               className={`nav-link ${location.pathname === link.to ? "nav-link-active" : ""}`}

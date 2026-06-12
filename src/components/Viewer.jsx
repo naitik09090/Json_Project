@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { MdFormatAlignLeft, MdOutlineFormatListBulleted, MdSearch, MdClose } from "react-icons/md";
 import { HiTrash } from "react-icons/hi2";
 import { Link } from "react-router-dom";
+import JSON5 from 'json5';
+// import AdComponent from "./AdComponent.jsx";
 
 const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2 }) => {
   const [parsedData, setParsedData] = useState(null);
@@ -11,10 +13,21 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
     const savedData = localStorage.getItem("jsonData");
     if (savedData) {
       try {
-        const parsed = JSON.parse(savedData);
+        let parsed;
+        try {
+          parsed = JSON.parse(savedData);
+        } catch (e) {
+          // Attempt to fix common issues like JSON5 does
+          let fixedJson = savedData.trim();
+          fixedJson = fixedJson.replace(/([{[,]\s*)(\w+)(\s*:)/g, '$1"$2"$3');
+          fixedJson = fixedJson.replace(/'([^']+)'/g, '"$1"');
+          fixedJson = fixedJson.replace(/,(\s*[}\]])/g, '$1');
+          parsed = JSON5.parse(fixedJson);
+        }
         setParsedData(parsed);
       } catch (error) {
-        alert("Failed to parse JSON data", error);
+        console.error("Parse Error:", error);
+        // We don't alert here to avoid annoying the user if they are just typing
       }
     }
   }, []);
@@ -196,149 +209,121 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
     );
   };
 
-  const activeStyle = { background: "#ffffff", color: "#000", borderRadius: "6px" };
-  const inactiveStyle = { color: "#1e293b" };
+  const activeStyle = { background: "#ffffff", color: "#1e293b", borderRadius: "6px", border: "1px solid #d1d5db", fontWeight: 600, transition: "all 0.15s ease", boxShadow: "none" };
+  const inactiveStyle = { background: "transparent", color: "#1e293b", borderRadius: "6px", border: "1px solid transparent", fontWeight: 400, transition: "all 0.15s ease", boxShadow: "none" };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      height: "100%",
+      padding: "16px 20px",
+      gap: "12px",
+      backgroundColor: "#f8fafc",
+      boxSizing: "border-box"
+    }}>
 
       {/* Toolbar */}
-      <div className="container-fluid" style={{ flexShrink: 0, background: "#ffffff" }}>
-        <ul className="nav justify-content-start border p-2 flex-wrap gap-2 toolbar-mobile-row" style={{ background: "#ffffff" }}>
-
-
-
+      <div
+        style={{
+          flexShrink: 0,
+          backgroundColor: "#ffffff",
+          borderRadius: "12px",
+          padding: "8px 16px",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.025)",
+          border: "1px solid #e2e8f0"
+        }}
+      >
+        <ul className="nav d-flex align-items-center flex-nowrap gap-2 toolbar-mobile-row" style={{ margin: 0, padding: 0, overflowX: "auto" }}>
           <li className="nav-item">
-            <Link to="/" className="nav-link px-2" style={inactiveStyle} onClick={handleFormatClick}>
-              <MdFormatAlignLeft /> Format
+            <Link to="/" className="nav-link px-3 py-2 d-flex align-items-center" onClick={() => { localStorage.setItem("formatOnLoad", "true"); }}>
+              <MdFormatAlignLeft style={{ marginRight: '6px' }} /> Format
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/" className="nav-link px-2" style={inactiveStyle} onClick={handleFormatClick1}>
-              <MdOutlineFormatListBulleted /> Remove Whitespace
+            <Link to="/" className="nav-link px-3 py-2 d-flex align-items-center" onClick={() => { localStorage.setItem("minifyOnLoad", "true"); }}>
+              <MdOutlineFormatListBulleted style={{ marginRight: '6px' }} /> Remove Whitespace
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/" className="nav-link px-2" style={inactiveStyle} onClick={handleFormatClick2}>
-              <HiTrash /> Clear
+            <Link to="/" className="nav-link px-3 py-2 d-flex align-items-center" onClick={() => { localStorage.setItem("clearOnLoad", "true"); }}>
+              <HiTrash style={{ marginRight: '6px' }} /> Clear
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/viewer" className="nav-link px-2 toolbar-btn-active" style={activeStyle}>Viewer</Link>
+            <Link to="/viewer" className="nav-link px-3 py-2 d-flex align-items-center toolbar-btn-active" style={{ fontWeight: 600 }}>Viewer</Link>
+          </li>
+          <li className="nav-item d-flex justify-content-end align-items-end" style={{ minWidth: "250px", display: "flex", alignItems: "center" }}>
+            <div style={{
+              position: "relative",
+              background: "#f8fafc",
+              borderRadius: "999px",
+              padding: "0 12px",
+              border: "1px solid #e2e8f0",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              width: "100%",
+              height: "45px", // Fixed height for perfect centering
+              boxShadow: searchQuery ? "0 0 0 2px rgba(99,102,241,0.2)" : "none",
+              transition: "all 0.2s ease",
+            }}>
+              <MdSearch style={{ color: "#6366f1", fontSize: "1.1rem", flexShrink: 0 }} />
+              <input
+                type="text"
+                placeholder="Search…"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                style={{
+                  flex: 1,
+                  background: "transparent",
+                  border: "none",
+                  outline: "none",
+                  color: "#1e293b",
+                  fontSize: "0.85rem",
+                  padding: "6px 0",
+                  width: "100%"
+                }}
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    padding: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    color: "#94a3b8"
+                  }}
+                >
+                  <MdClose style={{ fontSize: "1rem" }} />
+                </button>
+              )}
+            </div>
           </li>
         </ul>
       </div>
 
-      {/* ── Premium Search Bar ── */}
-      <div
-        className="search-bar-container"
-        style={{
-          flexShrink: 0,
-          background: "#ffffff",
-          borderBottom: "1px solid rgba(0,0,0,0.05)",
-          padding: "10px 16px",
-          position: "relative",
-          overflow: "hidden",
-          boxSizing: "border-box",
-        }}
-      >
 
 
-
-        {/* Dot-grid background texture */}
-        <div style={{
-          position: "absolute", inset: 0, pointerEvents: "none",
-          backgroundImage: "radial-gradient(circle, rgba(99,102,241,0.07) 1px, transparent 1px)",
-          backgroundSize: "18px 18px",
-        }} />
-
-        {/* Top shimmer line */}
-        <div style={{
-          position: "absolute", top: 0, left: 0, right: 0, height: "1px",
-          background: "linear-gradient(90deg, transparent, #6366f1, #06b6d4, transparent)",
-        }} />
-
-        <div style={{ position: "relative", display: "flex", alignItems: "center", gap: "10px" }}>
-
-          {/* Search pill input */}
-          <div style={{
-            flex: 1,
-            display: "flex",
-            alignItems: "center",
-            background: "rgba(255,255,255,0.06)",
-            border: "1px solid rgba(99,102,241,0.35)",
-            borderRadius: "999px",
-            padding: "0 14px",
-            gap: "8px",
-            boxShadow: searchQuery
-              ? "0 0 0 2px rgba(99,102,241,0.4), 0 0 20px rgba(99,102,241,0.2)"
-              : "none",
-            transition: "box-shadow 0.25s ease",
-          }}>
-            <MdSearch style={{ color: "#6366f1", fontSize: "1.15rem", flexShrink: 0 }} />
-            <input
-              type="text"
-              placeholder="Search keys or values…"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              style={{
-                flex: 1,
-                background: "transparent",
-                border: "none",
-                outline: "none",
-                color: "#1e293b",
-                fontSize: "0.84rem",
-                padding: "8px 0",
-                fontFamily: "'Inter', 'Segoe UI', system-ui, sans-serif",
-                letterSpacing: "0.02em",
-              }}
-            />
-
-
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery("")}
-                style={{
-                  background: "rgba(255,255,255,0.1)",
-                  border: "none",
-                  borderRadius: "50%",
-                  width: 20, height: 20,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  cursor: "pointer",
-                  padding: 0, flexShrink: 0,
-                  color: "#94a3b8",
-                  transition: "background 0.15s",
-                }}
-                aria-label="Clear search"
-              >
-                <MdClose style={{ fontSize: "0.85rem" }} />
-              </button>
-            )}
-          </div>
-
-          {/* Live result badge */}
-          {/* {searchQuery && (
-            <div style={{
-              background: "linear-gradient(135deg, #6366f1, #06b6d4)",
-              color: "#fff",
-              borderRadius: "999px",
-              padding: "4px 12px",
-              fontSize: "0.72rem",
-              fontWeight: 700,
-              letterSpacing: "0.04em",
-              whiteSpace: "nowrap",
-              boxShadow: "0 0 12px rgba(99,102,241,0.45)",
-              flexShrink: 0,
-            }}>
-              Searching…
-            </div>
-          )} */}
-
-        </div>
-      </div>
+      {/* Viewer Top Ad */}
+      {/* <div style={{ background: "transparent", borderBottom: "none" }}>
+        <AdComponent adSlot="VIEWER_TOP_SLOT_ID" />
+      </div> */}
 
       {/* JSON Tree — fills remaining screen */}
-      <div className="json-viewer" style={{ flex: 1, height: "auto", background: "#ffffff", padding: "20px" }}>
+      <div className="json-viewer" style={{
+        flex: 1,
+        backgroundColor: "#ffffff",
+        borderRadius: "12px",
+        padding: "24px",
+        boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.025)",
+        border: "1px solid #e2e8f0",
+        overflow: "auto",
+        boxSizing: "border-box"
+      }}>
 
 
 

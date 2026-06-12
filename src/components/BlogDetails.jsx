@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
+// import AdComponent from "./AdComponent.jsx";
 import { blogData } from "../data/blogData";
 import "../css/Blog.css";
 
@@ -12,7 +13,7 @@ const BlogDetails = () => {
 
   useEffect(() => {
     if (post) {
-      document.title = `${post.seo.title} | JSONVIEWER.io`;
+      document.title = `${post.seo.title} | JSONVIEW.ME`;
       const metaDescription = document.querySelector('meta[name="description"]');
       if (metaDescription) {
         metaDescription.setAttribute("content", post.seo.description);
@@ -93,6 +94,10 @@ const BlogDetails = () => {
 
           />
 
+          {/* Blog Post Mid Ad */}
+          {/* <div style={{ margin: "2rem 0", background: "transparent" }}>
+            <AdComponent adSlot="BLOG_DETAILS_MID_SLOT_ID" />
+          </div> */}
 
           <div
             className="blog-content"
@@ -125,6 +130,11 @@ const BlogDetails = () => {
         </button>
       </div> */}
 
+        {/* Blog Post Bottom Ad */}
+        {/* <div style={{ marginTop: "4rem", background: "transparent" }}>
+          <AdComponent adSlot="BLOG_DETAILS_BOTTOM_SLOT_ID" />
+        </div> */}
+
         <section style={{ marginTop: "80px", borderTop: "1px solid #e2e8f0", paddingTop: "60px" }}>
           <h2 style={{ fontSize: "1.8rem", fontWeight: "700", marginBottom: "32px", color: "#0f172a" }}>More to Explore</h2>
           <div className="blog-grid">
@@ -156,7 +166,7 @@ const BlogDetails = () => {
         </section>
       </div>
       <footer className="static-footer">
-        © {new Date().getFullYear()} JSONVIEWER.io — All Rights Reserved.
+        © {new Date().getFullYear()} JSONVIEW.ME — All Rights Reserved.
       </footer>
     </div>
 

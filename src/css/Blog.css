@@ -14,45 +14,7 @@
 }
 
 
-/* ── Hero Section ── */
-.blog-hero {
-  text-align: center;
-  margin-bottom: 50px;
-  padding: 60px 40px;
-  background: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  position: relative;
-  overflow: hidden;
-}
 
-/* Subtle accent line at top like Navbar */
-.blog-hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #6366f1, #a855f7);
-}
-
-.blog-hero h1 {
-  font-size: 3.25rem;
-  font-weight: 800;
-  margin-bottom: 16px;
-  color: #0f172a;
-  letter-spacing: -0.04em;
-}
-
-
-.blog-hero p {
-  font-size: 1.125rem;
-  color: #64748b;
-  max-width: 650px;
-  margin: 0 auto;
-}
 
 /* ── Blog Grid: Proper 3 cards per row ── */
 .blog-grid {
@@ -268,14 +230,7 @@
 }
 
 @media (max-width: 768px) {
-  .blog-hero {
-    padding: 40px 20px;
-    margin-bottom: 40px;
-  }
 
-  .blog-hero h1 {
-    font-size: 2.25rem;
-  }
 
   .blog-grid {
     grid-template-columns: 1fr;

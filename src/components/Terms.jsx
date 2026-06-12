@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import "../css/StaticPages.css";
 
 const termCards = [
-  { icon: "📜", title: "1. Acceptance", desc: "By using JSONVIEWER, you agree to be bound by these formal terms and conditions." },
+  { icon: "📜", title: "1. Acceptance", desc: "By using JSONVIEW.ME, you agree to be bound by these formal terms and conditions." },
   { icon: "⚙️", title: "2. Proper Use", desc: "Use the tool only for lawful purposes. No malicious scripts or automated abuse allowed." },
-  { icon: "🏛️", title: "3. Ownership", desc: "All code, design, and branding are the property of JSONVIEWER and protected by law." },
+  { icon: "🏛️", title: "3. Ownership", desc: "All code, design, and branding are the property of JSONVIEW.ME and protected by law." },
   { icon: "🛡️", title: "4. Data Privacy", desc: "We do not store or transmit your JSON content. Processing is 100% local." },
   { icon: "⚠️", title: "5. No Warranty", desc: "Provided 'as is'. Always verify your JSON output before production deployment." },
   { icon: "⚖️", title: "6. Liability", desc: "We are not liable for any damages resulting from the use or misuse of this application." },
@@ -12,7 +12,7 @@ const termCards = [
 
 export default function Terms() {
   useEffect(() => {
-    document.title = "Terms & Conditions - JSONVIEWER.io | Usage Policy";
+    document.title = "Terms & Conditions - JSONVIEW.ME | Usage Policy";
     const mainContent = document.getElementById("main-content");
     if (mainContent) mainContent.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -21,7 +21,7 @@ export default function Terms() {
     <div className="static-page">
       <header className="static-hero">
         <h1>Terms & Conditions</h1>
-        <p>Your guide to using JSONVIEWER responsibly and understanding our operational policies.</p>
+        <p>Your guide to using JSONVIEW.ME responsibly and understanding our operational policies.</p>
       </header>
 
       <div className="static-body">
@@ -44,13 +44,13 @@ export default function Terms() {
           <div className="static-card" style={{ padding: "40px" }}>
             <h3 style={{ marginBottom: "16px", color: "#0f172a" }}>1. Acceptance of Terms</h3>
             <p className="static-text">
-              By accessing and using JSONVIEWER.io, you acknowledge that you have read, understood, and agree to be bound by these terms. 
+              By accessing and using JSONVIEW.ME, you acknowledge that you have read, understood, and agree to be bound by these terms. 
               If you do not agree, please discontinue use of the service immediately.
             </p>
 
             <h3 style={{ margin: "32px 0 16px", color: "#0f172a" }}>2. Use of Service</h3>
             <p className="static-text">
-              JSONVIEWER is a free service provided to the developer community. You agree not to:
+              JSONVIEW.ME is a free service provided to the developer community. You agree not to:
             </p>
             <ul className="static-list">
               <li>Upload or process illegal, harmful, or offensive content.</li>
@@ -60,13 +60,13 @@ export default function Terms() {
 
             <h3 style={{ margin: "32px 0 16px", color: "#0f172a" }}>3. Intellectual Property</h3>
             <p className="static-text">
-              The intellectual property including the source code, design elements, and documentation of JSONVIEWER.io remains the 
+              The intellectual property including the source code, design elements, and documentation of JSONVIEW.ME remains the 
               exclusive property of the site owners.
             </p>
 
             <h3 style={{ margin: "32px 0 16px", color: "#0f172a" }}>4. Accuracy of Data</h3>
             <p className="static-text">
-              While we strive for 100% accuracy in our parsing and formatting engines, JSONVIEWER is provided "as is". 
+              While we strive for 100% accuracy in our parsing and formatting engines, JSONVIEW.ME is provided "as is". 
               Users are encouraged to verify critical data before production implementation.
             </p>
           </div>
@@ -76,15 +76,15 @@ export default function Terms() {
           <h2 className="static-section-title">Questions?</h2>
           <p className="static-text">
             If you have any questions regarding these terms, please contact us at{" "}
-            <a href="mailto:support@jsonviewer.io" style={{ color: "#6366f1", fontWeight: 700, textDecoration: "none" }}>
-              support@jsonviewer.io
+            <a href="mailto:support@jsonview.me" style={{ color: "#6366f1", fontWeight: 700, textDecoration: "none" }}>
+              support@jsonview.me
             </a>
           </p>
         </section>
       </div>
 
       <footer className="static-footer">
-        © {new Date().getFullYear()} JSONVIEWER.io — All Rights Reserved.
+        © {new Date().getFullYear()} JSONVIEW.ME — All Rights Reserved.
       </footer>
     </div>
   );
