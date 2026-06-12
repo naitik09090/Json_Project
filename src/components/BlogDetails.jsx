@@ -11,6 +11,37 @@ const BlogDetails = () => {
     return blogData.find((p) => p.id === id);
   }, [id]);
 
+  // Extract TOC items dynamically from content H2s
+  const tocItems = useMemo(() => {
+    if (!post || !post.content) return [];
+    // Match h2 tags and extract content
+    const regex = /<h2>(.*?)<\/h2>/g;
+    const items = [];
+    let match;
+    while ((match = regex.exec(post.content)) !== null) {
+      const text = match[1];
+      const linkId = text
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/\s+/g, "-");
+      items.push({ id: linkId, text });
+    }
+    return items;
+  }, [post]);
+
+  // Inject IDs to H2 tags in the HTML string dynamically
+  const processedContent = useMemo(() => {
+    if (!post || !post.content) return "";
+    let content = post.content;
+    return content.replace(/<h2>(.*?)<\/h2>/g, (match, text) => {
+      const linkId = text
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/\s+/g, "-");
+      return `<h2 id="${linkId}">${text}</h2>`;
+    });
+  }, [post]);
+
   useEffect(() => {
     if (post) {
       document.title = `${post.seo.title} | JSONVIEW.ME`;
@@ -53,7 +84,7 @@ const BlogDetails = () => {
   return (
     <div className="blog-container">
       <div className="blog-detail-container">
-
+        
         <Link to="/blog" className="blog-back-link">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -72,63 +103,60 @@ const BlogDetails = () => {
           Back to Blog
         </Link>
 
-        <article className="blog-article">
-          <header className="blog-detail-header">
-            <span className="blog-detail-category">{post.category}</span>
-            <h1 className="blog-detail-title">{post.title}</h1>
-            <div className="blog-detail-meta">
-              <span className="blog-detail-author">By {post.author}</span>
-              <span className="blog-detail-divider">•</span>
-              <span className="blog-detail-date">{post.date}</span>
-            </div>
-          </header>
+        <div className="blog-detail-layout">
+          {/* Left Column: Article Content */}
+          <article className="blog-article">
+            <header className="blog-detail-header">
+              <span className="blog-detail-category">{post.category}</span>
+              <h1 className="blog-detail-title">{post.title}</h1>
+              <div className="blog-detail-meta">
+                <span className="blog-detail-author">By {post.author}</span>
+                <span className="blog-meta-dot">•</span>
+                <span className="blog-detail-date">{post.date}</span>
+                <span className="blog-meta-dot">•</span>
+                <span className="blog-read-time">{post.readTime}</span>
+              </div>
+            </header>
 
-          <img
-            src={post.image}
-            alt={post.title}
-            className="blog-detail-image"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80";
-            }}
+            <img
+              src={post.image}
+              alt={post.title}
+              className="blog-detail-image"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80";
+              }}
+            />
 
-          />
+            {/* Blog Post Mid Ad */}
+            {/* <div style={{ margin: "2rem 0", background: "transparent" }}>
+              <AdComponent adSlot="BLOG_DETAILS_MID_SLOT_ID" />
+            </div> */}
 
-          {/* Blog Post Mid Ad */}
-          {/* <div style={{ margin: "2rem 0", background: "transparent" }}>
-            <AdComponent adSlot="BLOG_DETAILS_MID_SLOT_ID" />
-          </div> */}
+            <div
+              className="blog-content"
+              dangerouslySetInnerHTML={{ __html: processedContent }}
+            />
+          </article>
 
-          <div
-            className="blog-content"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
-        </article>
-
-        {/* <div style={{ marginTop: "60px", padding: "40px", background: "#f8fafc", borderRadius: "24px" }}>
-        <h3 style={{ margin: "0 0 16px" }}>Share this guide</h3>
-        <p style={{ color: "#64748b", margin: "0 0 24px" }}>Help other developers by sharing this tutorial.</p>
-        <button
-          onClick={() => {
-            navigator.clipboard.writeText(window.location.href);
-            alert("Sharable link copied to clipboard!");
-          }}
-          style={{
-            padding: "12px 24px",
-            background: "#6366f1",
-            color: "#fff",
-            border: "none",
-            borderRadius: "12px",
-            fontWeight: "600",
-            cursor: "pointer",
-            transition: "opacity 0.2s"
-          }}
-          onMouseOver={(e) => e.target.style.opacity = "0.9"}
-          onMouseOut={(e) => e.target.style.opacity = "1"}
-        >
-          Copy Link
-        </button>
-      </div> */}
+          {/* Right Column: Sticky Table of Contents */}
+          {tocItems.length > 0 && (
+            <aside className="blog-toc-sidebar">
+              <div className="blog-toc-card">
+                <h3>Table of Contents</h3>
+                <nav>
+                  <ul>
+                    {tocItems.map((item) => (
+                      <li key={item.id}>
+                        <a href={`#${item.id}`}>{item.text}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
+            </aside>
+          )}
+        </div>
 
         {/* Blog Post Bottom Ad */}
         {/* <div style={{ marginTop: "4rem", background: "transparent" }}>
@@ -140,6 +168,7 @@ const BlogDetails = () => {
           <div className="blog-grid">
             {suggestions.map((suggestion) => (
               <Link to={`/blog/${suggestion.id}`} key={suggestion.id} className="blog-card">
+                <div className="blog-card-image-wrapper">
                   <img
                     src={suggestion.image}
                     alt={suggestion.title}
@@ -149,27 +178,28 @@ const BlogDetails = () => {
                       e.target.onerror = null;
                       e.target.src = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80";
                     }}
-
                   />
+                </div>
 
-                  <div className="blog-card-content">
-                    <span className="blog-card-category">{suggestion.category}</span>
-                    <h3 className="blog-card-title">{suggestion.title}</h3>
-                    <p className="blog-card-excerpt">{suggestion.excerpt}</p>
-                    <div className="blog-card-footer">
+                <div className="blog-card-content">
+                  <span className="blog-card-category">{suggestion.category}</span>
+                  <h3 className="blog-card-title">{suggestion.title}</h3>
+                  <p className="blog-card-excerpt">{suggestion.excerpt}</p>
+                  <div className="blog-card-footer">
+                    <div className="author-info">
                       <span className="blog-card-author">{suggestion.author}</span>
+                      <span className="blog-meta-dot">•</span>
+                      <span className="blog-card-date">{suggestion.date}</span>
                     </div>
+                    <span className="blog-read-time">{suggestion.readTime}</span>
                   </div>
-                </Link>
-              ))}
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
       </div>
-      <footer className="static-footer">
-        © {new Date().getFullYear()} JSONVIEW.ME — All Rights Reserved.
-      </footer>
     </div>
-
   );
 };
 

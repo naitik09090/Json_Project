@@ -5,6 +5,7 @@ body,
     height: 100%;
     margin: 0;
     padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 /* ── Ensure scrollbars are visible in the editor ── */
@@ -66,14 +67,32 @@ html {
   ══════════════════════════════════════════════════ */
 
     .mobile-nav-container {
-        background: linear-gradient(135deg, #eaebec 0%) !important;
+        background: #f8fafc !important;
         border: none !important;
-        border-bottom: 1px solid rgba(99, 102, 241, 0.25) !important;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.55) !important;
-        padding: 0 0 8px 0 !important;
-        /* Added space after the tabs */
+        border-bottom: 1px solid #e2e8f0 !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+        padding: 8px 0 !important;
         position: relative !important;
         overflow: hidden !important;
+    }
+
+    .navbar-mobile-row-container {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 10px 16px !important;
+        gap: 8px !important;
+    }
+
+    .mobile-logo-link {
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .mobile-logo-link img {
+        height: 28px !important;
     }
 
     /* Hide horizontal scrollbar for mobile nav and toolbar rows */
@@ -112,14 +131,14 @@ html {
         left: 0;
         right: 0;
         height: 1px;
-        background: linear-gradient(135deg, #eaebec 0%, #4f46e5 50%, #06b6d4 100%) !important;
+        background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #06b6d4 100%) !important;
         z-index: 1;
     }
 
     .navbar-mobile-row {
         background: transparent !important;
         border: none !important;
-        padding: 10px 12px !important;
+        padding: 0 0 0 12px !important;
         gap: 7px !important;
         flex-wrap: nowrap !important;
         overflow-x: auto !important;
@@ -127,36 +146,35 @@ html {
         position: relative;
         z-index: 2;
         align-items: center !important;
+        flex: 1 !important;
+        min-width: 0 !important;
+        justify-content: start !important;
+        box-sizing: border-box !important;
     }
 
     /* All nav tabs — ghost pills */
     .navbar-mobile-row .nav-link {
-        color: #000 !important;
-        background: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.10) !important;
+        color: #475569 !important;
+        background: transparent !important;
+        border: 1px solid transparent !important;
         border-radius: 24px !important;
         padding: 6px 15px !important;
         font-size: 0.78rem !important;
-        font-weight: 700 !important;
+        font-weight: 500 !important;
         letter-spacing: 0.03em !important;
         white-space: nowrap !important;
-        backdrop-filter: blur(6px) !important;
         transition: all 0.22s ease !important;
         text-transform: none !important;
     }
 
-    /* ★ Active nav tab — neon indigo-cyan glow pill */
+    /* ★ Active nav tab — clean white pill with indigo text */
     .navbar-mobile-row .nav-link.nav-link-active {
-        color: #ffffff !important;
-        background: linear-gradient(135deg, #eaebec 0%, #4f46e5 50%, #06b6d4 100%) !important;
-        border-color: rgba(99, 102, 241, 0.4) !important;
+        color: #4f46e5 !important;
+        background: #ffffff !important;
+        border: 1px solid #d1d5db !important;
         font-weight: 700 !important;
-        box-shadow:
-            0 0 0 1px rgba(99, 102, 241, 0.35),
-            0 0 16px rgba(99, 102, 241, 0.55),
-            0 0 32px rgba(6, 182, 212, 0.25) !important;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35) !important;
-        letter-spacing: 0.04em !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+        letter-spacing: 0.03em !important;
     }
 
     /* ══════════════════════════════════════════════════
@@ -200,7 +218,7 @@ html {
     /* ★ Active toolbar button — purple gradient + glow */
     .toolbar-mobile-row .nav-link.toolbar-btn-active {
         color: #ffffff !important;
-        background: linear-gradient(135deg, #eaebec 0%, #4f46e5 50%, #06b6d4 100%) !important;
+        background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #06b6d4 100%) !important;
         border-color: transparent !important;
         box-shadow:
             0 0 0 1px rgba(124, 58, 237, 0.3),
@@ -263,4 +281,122 @@ html {
     .d-md-flex {
         display: flex !important;
     }
+}
+
+/* ─────────────────────────────────────────
+   DESKTOP NAVBAR — min-width 769px
+───────────────────────────────────────── */
+@media (min-width: 769px) {
+    .header-navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 24px;
+        background-color: #f8fafc;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .header-logo-link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .header-logo {
+        height: 32px;
+        object-fit: contain;
+    }
+
+    .header-nav-links {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .header-nav-item {
+        color: #475569;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .header-nav-item:hover {
+        color: #0f172a;
+        background-color: #ffffff;
+    }
+
+    .header-nav-item-active {
+        color: #0f172a !important;
+        background-color: #ffffff !important;
+        border-color: #d1d5db !important;
+        font-weight: 600 !important;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    /* ── Desktop Toolbar ── */
+    .toolbar-mobile-row .nav-link {
+        color: #4b5563;
+        font-size: 14px;
+        font-weight: 500;
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        background-color: #ffffff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .toolbar-mobile-row .nav-link:hover {
+        color: #1f2937;
+        background-color: #f1f5f9;
+        border-color: #d1d5db;
+    }
+
+    .toolbar-mobile-row .nav-link.toolbar-btn-active {
+        color: #ffffff !important;
+        background: #6366f1 !important;
+        border-color: #4f46e5 !important;
+        font-weight: 600 !important;
+        box-shadow: 0 1px 2px rgba(99, 102, 241, 0.2) !important;
+    }
+}
+
+/* ── Layout and Spacing Utilities (Global & Desktop) ── */
+.d-flex {
+    display: flex !important;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.flex-nowrap {
+    flex-wrap: nowrap !important;
+}
+
+.gap-2 {
+    gap: 8px !important;
+}
+
+.ms-auto {
+    margin-left: auto !important;
+}
+
+.px-3 {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+}
+
+.py-2 {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
 }

@@ -3,6 +3,7 @@ import "./App.css";
 import "./css/Viewer.css";
 import "./css/Home.css";
 import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
 // import AdComponent from "./components/AdComponent.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -118,6 +119,7 @@ function App() {
                 <Route path="/blog/:id" element={<BlogDetails />} />
               </Routes>
             </Suspense>
+            <Footer />
           </main>
 
           {/* Right Ad Banner */}

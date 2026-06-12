@@ -28,6 +28,17 @@ function Home() {
   }, [jsonData]);
 
   useEffect(() => {
+    document.title = "JSONVIEW.ME — Format, Validate & Explore JSON Online";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", "Free online JSON viewer and formatter. Paste your JSON to instantly beautify, validate, minify, and explore it as an interactive tree — no sign-up, no server uploads, 100% private.");
+    }
+    const mainContent = document.getElementById("main-content");
+    if (mainContent) {
+      mainContent.scrollTo({ top: 0, behavior: "smooth" });
+      mainContent.style.overflowY = "hidden";
+    }
+
     const saved = localStorage.getItem("jsonData");
     if (saved) {
       setJsonData(saved);
@@ -47,6 +58,12 @@ function Home() {
         setTimeout(() => handleClearAuto(), 100);
       }
     }
+
+    return () => {
+      if (mainContent) {
+        mainContent.style.overflowY = "auto";
+      }
+    };
   }, []);
 
   const handleMinifyAuto = (data) => {
@@ -175,7 +192,8 @@ function Home() {
     <div style={{
       display: "flex",
       flexDirection: "column",
-      height: "100%",
+      flex: 1,
+      minHeight: 0,
       padding: "16px 20px",
       gap: "12px",
       backgroundColor: "#f8fafc",
@@ -217,7 +235,7 @@ function Home() {
               <HiTrash style={{ marginRight: '6px' }} /> Clear
             </Link>
           </li>
-          <li className="nav-item ms-auto">
+          <li className="nav-item">
             <Link to="/viewer"
               onClick={handleViewerClick}
               className={`nav-link px-3 py-2 d-flex align-items-center ${isViewer ? "toolbar-btn-active" : ""}`}

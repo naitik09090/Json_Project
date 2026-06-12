@@ -10,6 +10,17 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
+    document.title = "JSON Viewer - JSONVIEW.ME | Interactive Tree Explorer";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", "Explore, search, and edit your JSON data interactively as an intuitive, expandable tree structure. 100% secure and runs entirely in your browser.");
+    }
+    const mainContent = document.getElementById("main-content");
+    if (mainContent) {
+      mainContent.scrollTo({ top: 0, behavior: "smooth" });
+      mainContent.style.overflowY = "hidden";
+    }
+
     const savedData = localStorage.getItem("jsonData");
     if (savedData) {
       try {
@@ -30,6 +41,12 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
         // We don't alert here to avoid annoying the user if they are just typing
       }
     }
+
+    return () => {
+      if (mainContent) {
+        mainContent.style.overflowY = "auto";
+      }
+    };
   }, []);
 
   const handleUpdateValue = (path, newValue) => {
@@ -216,7 +233,8 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
     <div style={{
       display: "flex",
       flexDirection: "column",
-      height: "100%",
+      flex: 1,
+      minHeight: 0,
       padding: "16px 20px",
       gap: "12px",
       backgroundColor: "#f8fafc",
@@ -253,18 +271,18 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
           <li className="nav-item">
             <Link to="/viewer" className="nav-link px-3 py-2 d-flex align-items-center toolbar-btn-active" style={{ fontWeight: 600 }}>Viewer</Link>
           </li>
-          <li className="nav-item d-flex justify-content-end align-items-end" style={{ minWidth: "250px", display: "flex", alignItems: "center" }}>
+          <li className="nav-item ms-auto" style={{ minWidth: "220px", display: "flex", alignItems: "center" }}>
             <div style={{
               position: "relative",
-              background: "#f8fafc",
-              borderRadius: "999px",
-              padding: "0 12px",
+              background: "#f1f5f9",
+              borderRadius: "8px",
+              padding: "0 10px",
               border: "1px solid #e2e8f0",
               display: "flex",
               alignItems: "center",
               gap: "6px",
               width: "100%",
-              height: "45px", // Fixed height for perfect centering
+              height: "38px", // Matches the height of the toolbar buttons
               boxShadow: searchQuery ? "0 0 0 2px rgba(99,102,241,0.2)" : "none",
               transition: "all 0.2s ease",
             }}>
@@ -281,7 +299,7 @@ const JsonTreeMap = ({ handleFormatClick, handleFormatClick1, handleFormatClick2
                   outline: "none",
                   color: "#1e293b",
                   fontSize: "0.85rem",
-                  padding: "6px 0",
+                  padding: "0",
                   width: "100%"
                 }}
               />

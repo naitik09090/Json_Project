@@ -1,0 +1,67 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import "../css/Footer.css";
+
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="app-footer" role="contentinfo">
+      <div className="footer-container">
+        <div className="footer-brand">
+          <Link to="/" className="footer-logo" title="JSONVIEW.ME Home">
+            <img src="/jsonview.png" alt="JSONVIEW.ME Logo" />
+          </Link>
+          <p className="footer-tagline">
+            Fast, secure, and offline-first JSON tools for developers. Paste, format, validate, and tree-explore your JSON data in real-time.
+          </p>
+        </div>
+
+        <div className="footer-col">
+          <h3>Tools</h3>
+          <ul>
+            <li>
+              <Link to="/">JSON Formatter</Link>
+            </li>
+            <li>
+              <Link to="/viewer">JSON Viewer</Link>
+            </li>
+          </ul>
+        </div>
+
+        <div className="footer-col">
+          <h3>Resources</h3>
+          <ul>
+            <li>
+              <Link to="/blog">Blog</Link>
+            </li>
+            <li>
+              <Link to="/about">About Us</Link>
+            </li>
+            <li>
+              <Link to="/contact">Contact</Link>
+            </li>
+          </ul>
+        </div>
+
+        <div className="footer-col">
+          <h3>Legal</h3>
+          <ul>
+            <li>
+              <Link to="/privacy-policy">Privacy Policy</Link>
+            </li>
+            <li>
+              <Link to="/terms">Terms of Service</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <p>© {currentYear} JSONVIEW.ME. All rights reserved.</p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

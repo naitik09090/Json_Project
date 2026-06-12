@@ -35,56 +35,61 @@ export default function Contact() {
         <p>Have a question or a feedback? Our team is dedicated to providing the best possible support to the developer community.</p>
       </header>
 
-      <div className="static-body">
-        <section className="static-section">
-          <h2 className="static-section-title">Support Information</h2>
-          <div className="static-grid">
-            {infoCards.map((c, i) => (
-              <div key={i} className="static-card">
-                <span className="static-card-icon">{c.icon}</span>
-                <h3 className="static-card-title">{c.title}</h3>
-                <p className="static-card-desc">{c.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="static-section">
-          <h2 className="static-section-title">Send a Message</h2>
-          {sent && (
-            <div className="static-highlight">
-              ✅ Thank you! Your message has been sent. We'll get back to you soon.
+      <div className="static-body" style={{ maxWidth: "1200px" }}>
+        <div className="contact-grid-layout">
+          
+          {/* Left Column: Support Info */}
+          <section className="static-section" style={{ marginBottom: 0 }}>
+            <h2 className="static-section-title">Support Information</h2>
+            <div className="contact-info-list">
+              {infoCards.map((c, i) => (
+                <div key={i} className="contact-info-card">
+                  <span className="static-card-icon">{c.icon}</span>
+                  <div className="static-card-text">
+                    <h3 className="static-card-title">{c.title}</h3>
+                    <p className="static-card-desc">{c.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          )}
-          <div className="static-card" style={{ maxWidth: "800px", margin: "0 auto" }}>
-            <form onSubmit={handleSubmit}>
-              <div className="static-grid" style={{ gridTemplateColumns: "1fr 1fr", gap: "24px", marginTop: 0 }}>
-                <div className="static-form-group">
-                  <label className="static-label">Full Name</label>
-                  <input type="text" name="name" className="static-input" placeholder="Your name" value={form.name} onChange={handleChange} required />
+          </section>
+
+          {/* Right Column: Send Message Form */}
+          <section className="static-section" style={{ marginBottom: 0 }}>
+            <h2 className="static-section-title">Send a Message</h2>
+            {sent && (
+              <div className="static-highlight" style={{ padding: "16px 24px", margin: "0 0 24px 0", fontSize: "1.05rem" }}>
+                ✅ Thank you! Your message has been sent. We'll get back to you soon.
+              </div>
+            )}
+            <div className="contact-form-container">
+              <form onSubmit={handleSubmit}>
+                <div className="static-form-grid">
+                  <div className="static-form-group">
+                    <label className="static-label">Full Name</label>
+                    <input type="text" name="name" className="static-input" placeholder="Your name" value={form.name} onChange={handleChange} required />
+                  </div>
+                  <div className="static-form-group">
+                    <label className="static-label">Email Address</label>
+                    <input type="email" name="email" className="static-input" placeholder="you@example.com" value={form.email} onChange={handleChange} required />
+                  </div>
                 </div>
                 <div className="static-form-group">
-                  <label className="static-label">Email Address</label>
-                  <input type="email" name="email" className="static-input" placeholder="you@example.com" value={form.email} onChange={handleChange} required />
+                  <label className="static-label">Subject</label>
+                  <input type="text" name="subject" className="static-input" placeholder="e.g. Bug report, Feature request" value={form.subject} onChange={handleChange} required />
                 </div>
-              </div>
-              <div className="static-form-group" style={{ gridColumn: "1 / -1" }}>
-                <label className="static-label">Subject</label>
-                <input type="text" name="subject" className="static-input" placeholder="e.g. Bug report, Feature request" value={form.subject} onChange={handleChange} required />
-              </div>
-              <div className="static-form-group" style={{ gridColumn: "1 / -1" }}>
-                <label className="static-label">Message</label>
-                <textarea name="message" rows="5" className="static-textarea" placeholder="Describe your question or feedback..." value={form.message} onChange={handleChange} required style={{ resize: "vertical" }} />
-              </div>
-              <button type="submit" className="static-btn">Send Message →</button>
-            </form>
-          </div>
-        </section>
+                <div className="static-form-group">
+                  <label className="static-label">Message</label>
+                  <textarea name="message" rows="6" className="static-textarea" placeholder="Describe your question or feedback..." value={form.message} onChange={handleChange} required style={{ resize: "vertical" }} />
+                </div>
+                <button type="submit" className="static-btn" style={{ width: "100%" }}>Send Message →</button>
+              </form>
+            </div>
+          </section>
+
+        </div>
       </div>
 
-      <footer className="static-footer">
-        © {new Date().getFullYear()} JSONVIEW.ME — All Rights Reserved.
-      </footer>
     </div>
   );
 }
