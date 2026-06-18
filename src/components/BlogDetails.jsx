@@ -55,14 +55,68 @@ const BlogDetails = () => {
       }
       const canonical = document.querySelector('link[rel="canonical"]');
       if (canonical) {
-        canonical.setAttribute("href", window.location.href);
+        canonical.setAttribute("href", `https://jsonview.me/blog/${post.id}`);
       }
+
+      // Dynamic Schema.org JSON-LD Structured Data for rich search results
+      const existingScript = document.getElementById("jsonld-blog-post");
+      if (existingScript) {
+        existingScript.remove();
+      }
+
+      const script = document.createElement("script");
+      script.id = "jsonld-blog-post";
+      script.type = "application/ld+json";
+      
+      let isoDate = "";
+      try {
+        isoDate = new Date(post.date).toISOString().split('T')[0];
+      } catch (e) {
+        isoDate = new Date().toISOString().split('T')[0];
+      }
+
+      const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "image": post.image.startsWith("http") ? post.image : `https://jsonview.me${post.image}`,
+        "author": {
+          "@type": "Person",
+          "name": post.author
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "JSONVIEW.ME",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://jsonview.me/favicon.png"
+          }
+        },
+        "datePublished": isoDate,
+        "description": post.excerpt,
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": `https://jsonview.me/blog/${post.id}`
+        }
+      };
+
+      script.text = JSON.stringify(structuredData);
+      document.head.appendChild(script);
     }
+
     // Scroll to top of main container on post change
     const mainContent = document.getElementById("main-content");
     if (mainContent) {
       mainContent.scrollTo({ top: 0, behavior: "smooth" });
     }
+
+    // Clean up injected script on unmount
+    return () => {
+      const script = document.getElementById("jsonld-blog-post");
+      if (script) {
+        script.remove();
+      }
+    };
   }, [post]);
 
   const suggestions = useMemo(() => {

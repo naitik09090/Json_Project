@@ -10,7 +10,10 @@ const Footer = () => {
       <div className="footer-container">
         <div className="footer-brand">
           <Link to="/" className="footer-logo" title="JSONVIEW.ME Home">
-            <img src="/jsonview.png" alt="JSONVIEW.ME Logo" />
+            <picture>
+              <source srcSet="/jsonview.webp" type="image/webp" />
+              <img src="/jsonview.png" alt="JSONVIEW.ME Logo" width="206" height="36" />
+            </picture>
           </Link>
           <p className="footer-tagline">
             Fast, secure, and offline-first JSON tools for developers. Paste, format, validate, and tree-explore your JSON data in real-time.

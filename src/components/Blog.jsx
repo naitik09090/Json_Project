@@ -14,6 +14,14 @@ const Blog = () => {
     if (metaDescription) {
       metaDescription.setAttribute("content", "Explore our technical blog for in-depth tutorials on JSON, data structures, and the latest developer tools. Stay updated with modern data serialization patterns.");
     }
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute("content", "JSON blog, data architecture, JSON formatting tutorials, developer API guides, JSONVIEW.ME");
+    }
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute("href", "https://jsonview.me/blog");
+    }
     const mainContent = document.getElementById("main-content");
     if (mainContent) {
       mainContent.scrollTo({ top: 0, behavior: "smooth" });
