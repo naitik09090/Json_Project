@@ -27,8 +27,8 @@ const Navbar = () => {
       <div className="mobile-nav-container navbar-mobile-row-container header-navbar">
         <Link className="mobile-logo-link header-logo-link" to="/" title="JSONVIEW.ME Home" onClick={handleLinkClick}>
           <picture>
-            <source srcSet="/jsonview.webp" type="image/webp" />
-            <img src="/jsonview.png" alt="JSONVIEW.ME Logo" className="header-logo" width="183" height="32" />
+            <source srcSet="/jsonview-1x.webp 1x, /jsonview.webp 2x" type="image/webp" />
+            <img src="/jsonview-1x.png" srcSet="/jsonview-1x.png 1x, /jsonview.png 2x" alt="JSONVIEW.ME Logo" className="header-logo" width="183" height="32" />
           </picture>
         </Link>
 

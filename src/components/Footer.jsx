@@ -11,8 +11,8 @@ const Footer = () => {
         <div className="footer-brand">
           <Link to="/" className="footer-logo" title="JSONVIEW.ME Home">
             <picture>
-              <source srcSet="/jsonview.webp" type="image/webp" />
-              <img src="/jsonview.png" alt="JSONVIEW.ME Logo" width="206" height="36" />
+              <source srcSet="/jsonview-1x.webp 1x, /jsonview.webp 2x" type="image/webp" />
+              <img src="/jsonview-1x.png" srcSet="/jsonview-1x.png 1x, /jsonview.png 2x" alt="JSONVIEW.ME Logo" width="206" height="36" />
             </picture>
           </Link>
           <p className="footer-tagline">
