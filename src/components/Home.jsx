@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../css/Home.css";
 import { MdFormatAlignLeft } from "react-icons/md";
 import { MdOutlineFormatListBulleted } from "react-icons/md";
 import { HiTrash } from "react-icons/hi2";

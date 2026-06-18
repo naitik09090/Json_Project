@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../css/Viewer.css";
 import { MdFormatAlignLeft, MdOutlineFormatListBulleted, MdSearch, MdClose } from "react-icons/md";
 import { HiTrash } from "react-icons/hi2";
 import { Link } from "react-router-dom";

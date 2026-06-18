@@ -1,11 +1,10 @@
 import React, { useEffect, lazy, Suspense } from "react";
 import "./App.css";
-import "./css/Viewer.css";
-import "./css/Home.css";
 import Navbar from "./components/Navbar.jsx";
-import Footer from "./components/Footer.jsx";
 // import AdComponent from "./components/AdComponent.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+const Footer = lazy(() => import("./components/Footer.jsx"));
 
 // ── Lazy-load each page so Vite splits them into separate chunks ──
 const Home = lazy(() => import("./components/Home.jsx"));
@@ -119,7 +118,9 @@ function App() {
                 <Route path="/blog/:id" element={<BlogDetails />} />
               </Routes>
             </Suspense>
-            <Footer />
+            <Suspense fallback={null}>
+              <Footer />
+            </Suspense>
           </main>
 
           {/* Right Ad Banner */}
